@@ -1,0 +1,253 @@
+﻿entity,category,short_name,long_name,ISO2,ISO3,country_code,continent,region,sub_region,region_code,currency,currency_alpha_code,currency_num_code,msci_market,IIF_E&FM,imf_sdmx_id,comtrade_id
+AFG,country,Afghanistan,Islamic State of Afghanistan,AF,AFG,4,Asia,South Asia,Southern Asia,142,Afghani,AFN,971,,,AF,4
+ALA,country,Åland Islands,,AX,ALA,248,Europe,Europe,Northern Europe,150,Euro,EUR,978,,,AX,
+ALB,country,Albania,Republic of Albania,AL,ALB,8,Europe,Europe,Southern Europe,150,Lek,ALL,8,,,AL,8
+DZA,country,Algeria,People's Democratic Republic of Algeria,DZ,DZA,12,Africa,North Africa,Northern Africa,2,Algerian Dinar,DZD,12,,Middle East & North Africa,DZ,12
+ASM,country,American Samoa,American Samoa,AS,ASM,16,Oceania,Pacific,Polynesia,9,US Dollar,USD,840,,,AS,16
+AND,country,Andorra,,AD,AND,20,Europe,Europe,Southern Europe,150,Euro,EUR,978,,,AD,20
+AGO,country,Angola,People's Republic of Angola,AO,AGO,24,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Kwanza,AOA,973,,Sub-Saharan Africa,AO,24
+AIA,country,Anguilla,,AI,AIA,660,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,E. Caribbean Dollar,XCD,951,,,AI,660
+ATA,country,Antarctica,,AQ,ATA,10,Antarctica,,,,,,,,,AQ,10
+ATG,country,Antigua and Barbuda,Antigua and Barbuda,AG,ATG,28,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,E. Caribbean Dollar,XCD,951,,,AG,28
+ARG,country,Argentina,Argentine Republic,AR,ARG,32,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Argentine Peso,ARS,32,Frontier,Latin America,AR,32
+ARM,country,Armenia,Republic of Armenia,AM,ARM,51,Asia,Central Asia,Western Asia,142,Armenian Dram,AMD,51,,Central Asia,AM,51
+ABW,country,Aruba,Aruba,AW,ABW,533,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Aruban Guilder,AWG,533,,,AW,533
+AUS,country,Australia,Commonwealth of Australia,AU,AUS,36,Oceania,Pacific,Australia and New Zealand,9,Australian Dollar,AUD,36,Developed,,AU,36
+AUT,country,Austria,Republic of Austria,AT,AUT,40,Europe,Europe,Western Europe,150,Euro,EUR,978,Developed,,AT,40
+AZE,country,Azerbaijan,Republic of Azerbaijan,AZ,AZE,31,Asia,Central Asia,Western Asia,142,Azerbaijan Manat,AZN,944,,Central Asia,AZ,31
+BHS,country,Bahamas,Commonwealth of The Bahamas,BS,BHS,44,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Bahamian Dollar,BSD,44,,,BS,44
+BHR,country,Bahrain,Kingdom of Bahrain,BH,BHR,48,Asia,Middle East,Western Asia,142,Bahraini Dinar,BHD,48,Frontier,Middle East & North Africa,BH,48
+BGD,country,Bangladesh,People's Republic of Bangladesh,BD,BGD,50,Asia,South Asia,Southern Asia,142,Taka,BDT,50,Frontier,Asia-Pacific,BD,50
+BRB,country,Barbados,Barbados,BB,BRB,52,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Barbados Dollar,BBD,52,,,BB,52
+BLR,country,Belarus,Republic of Belarus,BY,BLR,112,Europe,Europe,Eastern Europe,150,Belarusian Ruble,BYR,974,,,BY,112
+BEL,country,Belgium,Kingdom of Belgium,BE,BEL,56,Europe,Europe,Western Europe,150,Euro,EUR,978,Developed,,BE,56
+BLZ,country,Belize,Belize,BZ,BLZ,84,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Belize Dollar,BZD,84,,,BZ,84
+BEN,country,Benin,Republic of Benin,BJ,BEN,204,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,CFA Franc BCEAO,XOF,952,Frontier,,BJ,204
+BMU,country,Bermuda,The Bermudas,BM,BMU,60,North America,North America,Northern America,19,Bermudian Dollar,BMD,60,,,BM,60
+BTN,country,Bhutan,Kingdom of Bhutan,BT,BTN,64,Asia,South Asia,Southern Asia,142,Indian Rupee,INR,356,,,BT,64
+BOL,country,Bolivia (Plurinational State of),Plurinational State of Bolivia,BO,BOL,68,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Boliviano,BOB,68,,,BO,68
+BES,country,"Bonaire, Sint Eustatius and Saba",,BQ,BES,535,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,US Dollar,USD,840,,,BQ,535
+BIH,country,Bosnia and Herzegovina,Bosnia and Herzegovina,BA,BIH,70,Europe,Europe,Southern Europe,150,Convertible Mark,BAM,977,Frontier,,BA,70
+BWA,country,Botswana,Republic of Botswana,BW,BWA,72,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Pula,BWP,72,Frontier,,BW,72
+BVT,country,Bouvet Island,,BV,BVT,74,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Norwegian Krone,NOK,578,,,BV,74
+BRA,country,Brazil,Federative Republic of Brazil,BR,BRA,76,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Brazilian Real,BRL,76,Emerging,Latin America,BR,76
+IOT,country,British Indian Ocean Territory,,IO,IOT,86,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,US Dollar,USD,840,,,IO,
+BRN,country,Brunei Darussalam,Brunei Darussalam,BN,BRN,96,Asia,Southeast Asia,South-eastern Asia,142,Brunei Dollar,BND,96,,,BN,96
+BGR,country,Bulgaria,Republic of Bulgaria,BG,BGR,100,Europe,Europe,Eastern Europe,150,Bulgarian Lev,BGN,975,Frontier,,BG,100
+BFA,country,Burkina Faso,Burkina Faso,BF,BFA,854,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,CFA Franc BCEAO,XOF,952,Frontier,,BF,854
+BDI,country,Burundi,Republic of Burundi,BI,BDI,108,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Burundi Franc,BIF,108,,,BI,108
+CPV,country,Cabo Verde,Republic of Cabo Verde,CV,CPV,132,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,,CVE,132,,,CV,132
+KHM,country,Cambodia,Kingdom of Cambodia,KH,KHM,116,Asia,Southeast Asia,South-eastern Asia,142,Riel,KHR,116,,,KH,116
+CMR,country,Cameroon,Republic of Cameroon,CM,CMR,120,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,CFA Franc BEAC,XAF,950,,Sub-Saharan Africa,CM,120
+CAN,country,Canada,Canada,CA,CAN,124,North America,North America,Northern America,19,Canadian Dollar,CAD,124,Developed,,CA,124
+CYM,country,Cayman Islands,Cayman Islands,KY,CYM,136,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Cayman Is. Dollar,KYD,136,,,KY,136
+CAF,country,Central African Republic,Central African Republic,CF,CAF,140,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,CFA Franc BEAC,XAF,950,,,CF,140
+TCD,country,Chad,Republic of Chad,TD,TCD,148,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,CFA Franc BEAC,XAF,950,,,TD,148
+CHL,country,Chile,Republic of Chile,CL,CHL,152,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Chilean Peso,CLP,152,Emerging,Latin America,CL,152
+CHN,country,China,People's Republic of China,CN,CHN,156,Asia,East Asia,Eastern Asia,142,Yuan Renminbi,CNY,156,Emerging,Asia-Pacific,CN,156
+CXR,country,Christmas Island,,CX,CXR,162,Oceania,Pacific,Australia and New Zealand,9,Australian Dollar,AUD,36,,,CX,
+CCK,country,Cocos (Keeling) Islands,,CC,CCK,166,Oceania,Pacific,Australia and New Zealand,9,Australian Dollar,AUD,36,,,CC,
+COL,country,Colombia,Republic of Colombia,CO,COL,170,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Colombian Peso,COP,170,Emerging,Latin America,CO,170
+COM,country,Comoros,Union of the Comoros,KM,COM,174,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Comoro Franc,KMF,174,,,KM,174
+COG,country,Congo,Republic of Congo,CG,COG,178,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,CFA Franc BEAC,XAF,950,,,CG,178
+COD,country,"Congo, Democratic Republic of the",Democratic Republic of the Congo,CD,COD,180,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Franc Congolais,CDF,976,,,CD,180
+COK,country,Cook Islands,,CK,COK,184,Oceania,Pacific,Polynesia,9,New Zealand Dollar,NZD,554,,,CK,
+CRI,country,Costa Rica,Republic of Costa Rica,CR,CRI,188,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Costa Rican Colon,CRC,188,,Latin America,CR,188
+CIV,country,Côte d'Ivoire,Republic of Côte d'Ivoire,CI,CIV,384,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,CFA Franc BCEAO,XOF,952,,,CI,384
+HRV,country,Croatia,Republic of Croatia,HR,HRV,191,Europe,Europe,Southern Europe,150,Croatian Kuna,HRK,191,Frontier,,HR,191
+CUB,country,Cuba,Republic of Cuba,CU,CUB,192,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Cuban Peso,CUP,192,,,CU,192
+CUW,country,Curaçao,Curaçao,CW,CUW,531,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Cuban Peso,CUP,192,,,CW,
+CYP,country,Cyprus,Republic of Cyprus,CY,CYP,196,Asia,Central Asia,Western Asia,142,Euro,EUR,978,,,CY,196
+CZE,country,Czechia,Czech Republic,CZ,CZE,203,Europe,Europe,Eastern Europe,150,Czech Koruna,CZK,203,Emerging,Europe,CZ,203
+DNK,country,Denmark,Kingdom of Denmark,DK,DNK,208,Europe,Europe,Northern Europe,150,Danish Krone,DKK,208,Developed,,DK,208
+DJI,country,Djibouti,Republic of Djibouti,DJ,DJI,262,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Djibouti Franc,DJF,262,,,DJ,262
+DMA,country,Dominica,Commonwealth of Dominica,DM,DMA,212,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,E. Caribbean Dollar,XCD,951,,,DM,212
+DOM,country,Dominican Republic,Dominican Republic,DO,DOM,214,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Dominican Peso,DOP,214,,Latin America,DO,214
+ECU,country,Ecuador,Republic of Ecuador,EC,ECU,218,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,US Dollar,USD,840,,Latin America,EC,218
+EGY,country,Egypt,Arab Republic of Egypt,EG,EGY,818,Africa,North Africa,Northern Africa,2,Egyptian Pound,EGP,818,Emerging,Middle East & North Africa,EG,818
+SLV,country,El Salvador,Republic of El Salvador,SV,SLV,222,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,US Dollar,USD,840,,Latin America,SV,222
+GNQ,country,Equatorial Guinea,Republic of Equatorial Guinea,GQ,GNQ,226,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,CFA Franc BEAC,XAF,950,,,GQ,226
+ERI,country,Eritrea,State of Eritrea,ER,ERI,232,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Eritrean Nakfa,ERN,232,,,ER,232
+EST,country,Estonia,Republic of Estonia,EE,EST,233,Europe,Europe,Northern Europe,150,Euro,EUR,978,Frontier,,EE,233
+SWZ,country,Eswatini,Kingdom of Eswatini,SZ,SWZ,748,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Lilangeni,SZL,748,,,SZ,748
+ETH,country,Ethiopia,Federal Democratic Republic of Ethiopia,ET,ETH,231,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Ethiopian Birr,ETB,230,,Sub-Saharan Africa,ET,231
+FLK,country,Falkland Islands (Malvinas),,FK,FLK,238,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Falkland Is. Pound,FKP,238,,,FK,238
+FRO,country,Faroe Islands,Faroe Islands,FO,FRO,234,Europe,Europe,Northern Europe,150,Danish Krone,DKK,208,,,FO,
+FJI,country,Fiji,Republic of Fiji,FJ,FJI,242,Oceania,Pacific,Melanesia,9,Fiji Dollar,FJD,242,,,FJ,242
+FIN,country,Finland,Republic of Finland,FI,FIN,246,Europe,Europe,Northern Europe,150,Euro,EUR,978,Developed,,FI,246
+FRA,country,France,French Republic,FR,FRA,250,Europe,Europe,Western Europe,150,Euro,EUR,978,Developed,,FR,251
+GUF,country,French Guiana,,GF,GUF,254,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Euro,EUR,978,,,GF,254
+PYF,country,French Polynesia,French Polynesia,PF,PYF,258,Oceania,Pacific,Polynesia,9,CFP Franc,XPF,953,,,PF,258
+ATF,country,French Southern Territories,,TF,ATF,260,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Euro,Euro,978,,,TF,
+GAB,country,Gabon,Gabonese Republic,GA,GAB,266,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,CFA Franc BEAC,XAF,950,,,GA,266
+GMB,country,Gambia,Republic of The Gambia,GM,GMB,270,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Gambian Dalasi,GMD,270,,,GM,270
+GEO,country,Georgia,Georgia,GE,GEO,268,Asia,Central Asia,Western Asia,142,Lari,GEL,981,,Central Asia,GE,268
+DEU,country,Germany,Federal Republic of Germany,DE,DEU,276,Europe,Europe,Western Europe,150,Euro,EUR,978,Developed,,DE,276
+GHA,country,Ghana,Republic of Ghana,GH,GHA,288,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Cedi,GHS,936,,Sub-Saharan Africa,GH,288
+GIB,country,Gibraltar,,GI,GIB,292,Europe,Europe,Southern Europe,150,Gibraltar Pound,GIP,292,,,GI,292
+GRC,country,Greece,Hellenic Republic,GR,GRC,300,Europe,Europe,Southern Europe,150,Euro,EUR,978,Emerging,,GR,300
+GRL,country,Greenland,Greenland,GL,GRL,304,North America,North America,Northern America,19,Danish Krone,DKK,208,,,GL,304
+GRD,country,Grenada,Grenada,GD,GRD,308,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,E. Caribbean Dollar,XCD,951,,,GD,308
+GLP,country,Guadeloupe,,GP,GLP,312,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Euro,EUR,978,,,GP,312
+GUM,country,Guam,Guam,GU,GUM,316,Oceania,Pacific,Micronesia,9,US Dollar,USD,840,,,GU,316
+GTM,country,Guatemala,Republic of Guatemala,GT,GTM,320,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Quetzal,GTQ,320,,Latin America,GT,320
+GGY,country,Guernsey,,GG,GGY,831,Europe,Europe,Northern Europe,150,,GBP,826,,,GG,
+GIN,country,Guinea,Republic of Guinea,GN,GIN,324,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Guinea Franc,GNF,324,,,GN,324
+GNB,country,Guinea-Bissau,Republic of Guinea-Bissau,GW,GNB,624,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Guinea-Bissau Peso,GWP,624,,,GW,624
+GUY,country,Guyana,Co-operative Republic of Guyana,GY,GUY,328,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Guyana Dollar,GYD,328,,,GY,328
+HTI,country,Haiti,Republic of Haiti,HT,HTI,332,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Gourde,HTG,332,,,HT,332
+HMD,country,Heard Island and McDonald Islands,,HM,HMD,334,Oceania,Pacific,Australia and New Zealand,9,Australian Dollar,AUD,36,,,HM,334
+VAT,country,Holy See,,VA,VAT,336,Europe,Europe,Southern Europe,150,Euro,EUR,978,,,VA,336
+HND,country,Honduras,Republic of Honduras,HN,HND,340,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Lempira,HNL,340,,Latin America,HN,340
+HKG,country,Hong Kong,Hong Kong Special Administrative Region of the People's Republic of China,HK,HKG,344,Asia,East Asia,Eastern Asia,142,Hong Kong Dollar,HKD,344,Developed,,HK,344
+HUN,country,Hungary,Hungary,HU,HUN,348,Europe,Europe,Eastern Europe,150,Forint,HUF,348,Emerging,Europe,HU,348
+ISL,country,Iceland,Republic of Iceland,IS,ISL,352,Europe,Europe,Northern Europe,150,Iceland Krona,ISK,352,Frontier,,IS,352
+IND,country,India,Republic of India,IN,IND,356,Asia,South Asia,Southern Asia,142,Indian Rupee,INR,356,Emerging,Asia-Pacific,IN,699
+IDN,country,Indonesia,Republic of Indonesia,ID,IDN,360,Asia,Southeast Asia,South-eastern Asia,142,Rupiah,IDR,360,Emerging,Asia-Pacific,ID,360
+IRN,country,Iran,Islamic Republic of Iran,IR,IRN,364,Asia,Middle East,Southern Asia,142,Iranian Rial,IRR,364,,Middle East & North Africa,IR,364
+IRQ,country,Iraq,Republic of Iraq,IQ,IRQ,368,Asia,Middle East,Western Asia,142,Iraqi Dinar,IQD,368,,Middle East & North Africa,IQ,368
+IRL,country,Ireland,Ireland,IE,IRL,372,Europe,Europe,Northern Europe,150,Euro,EUR,978,Developed,,IE,372
+IMN,country,Isle of Man,,IM,IMN,833,Europe,Europe,Northern Europe,150,,GBP,826,,,IM,
+ISR,country,Israel,State of Israel,IL,ISR,376,Asia,Middle East,Western Asia,142,New Israeli Shequel,ILS,376,Developed,,IL,376
+ITA,country,Italy,Italian Republic,IT,ITA,380,Europe,Europe,Southern Europe,150,Euro,EUR,978,Developed,,IT,381
+JAM,country,Jamaica,Jamaica,JM,JAM,388,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Jamaican Dollar,JMD,388,Frontier,Latin America,JM,388
+JPN,country,Japan,Japan,JP,JPN,392,Asia,East Asia,Eastern Asia,142,Yen,JPY,392,Developed,,JP,392
+JEY,country,Jersey,,JE,JEY,832,Europe,Europe,Northern Europe,150,,GBP,826,,,JE,
+JOR,country,Jordan,Hashemite Kingdom of Jordan,JO,JOR,400,Asia,Middle East,Western Asia,142,Jordanian Dinar,JOD,400,Frontier,Middle East & North Africa,JO,400
+KAZ,country,Kazakhstan,Republic of Kazakhstan,KZ,KAZ,398,Asia,Central Asia,Central Asia,142,Tenge,KZT,398,Frontier,Central Asia,KZ,398
+KEN,country,Kenya,Republic of Kenya,KE,KEN,404,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Kenyan Shilling,KES,404,Frontier,Sub-Saharan Africa,KE,404
+KIR,country,Kiribati,Republic of Kiribati,KI,KIR,296,Oceania,Pacific,Micronesia,9,Australian Dollar,AUD,36,,,KI,296
+PRK,country,North Korea,Republic of Korea,KP,PRK,408,Asia,East Asia,Eastern Asia,142,North Korean Won,KPW,408,,,KP,410
+KOR,country,South Korea,Democratic People's Republic of Korea,KR,KOR,410,Asia,East Asia,Eastern Asia,142,Won,KRW,410,Emerging,,KR,408
+KWT,country,Kuwait,State of Kuwait,KW,KWT,414,Asia,Middle East,Western Asia,142,Kuwaiti Dinar,KWD,414,Emerging,Middle East & North Africa,KW,414
+KGZ,country,Kyrgyzstan,Kyrgyz Republic,KG,KGZ,417,Asia,Central Asia,Central Asia,142,Som,KGS,417,,,KG,417
+LAO,country,Lao People's Democratic Republic,Lao People's Democratic Republic,LA,LAO,418,Asia,Southeast Asia,South-eastern Asia,142,Kip,LAK,418,,,LA,418
+LVA,country,Latvia,Republic of Latvia,LV,LVA,428,Europe,Europe,Northern Europe,150,Euro,EUR,978,,,LV,428
+LBN,country,Lebanon,Lebanese Republic,LB,LBN,422,Asia,Middle East,Western Asia,142,Lebanese Pound,LBP,422,Frontier,Middle East & North Africa,LB,422
+LSO,country,Lesotho,Kingdom of Lesotho,LS,LSO,426,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Lesotho Loti,LSL,426,,,LS,426
+LBR,country,Liberia,Republic of Liberia,LR,LBR,430,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Liberian Dollar,LRD,430,,,LR,430
+LBY,country,Libya,Socialist People's Libyan Arab Jamahiriya,LY,LBY,434,Africa,North Africa,Northern Africa,2,Libyan Dinar,LYD,434,,,LY,434
+LIE,country,Liechtenstein,,LI,LIE,438,Europe,Europe,Western Europe,150,Swiss Franc,CHF,756,,,LI,
+LTU,country,Lithuania,Republic of Lithuania,LT,LTU,440,Europe,Europe,Northern Europe,150,Euro,EUR,978,Frontier,,LT,440
+LUX,country,Luxembourg,Grand Duchy of Luxembourg,LU,LUX,442,Europe,Europe,Western Europe,150,Euro,Euro,978,,,LU,442
+MAC,country,Macao,Macao Special Administrative Region of the People's Republic of China,MO,MAC,446,Asia,East Asia,Eastern Asia,142,Pataca,MOP,446,,,MO,446
+MDG,country,Madagascar,Republic of Madagascar,MG,MDG,450,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Malagasy Ariary,MGA,969,,,MG,450
+MWI,country,Malawi,Republic of Malawi,MW,MWI,454,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Kwacha,MWK,454,,,MW,454
+MYS,country,Malaysia,Malaysia,MY,MYS,458,Asia,Southeast Asia,South-eastern Asia,142,Malaysian Ringgit,MYR,458,Emerging,Asia-Pacific,MY,458
+MDV,country,Maldives,Republic of Maldives,MV,MDV,462,Asia,South Asia,Southern Asia,142,Rufiyaa,MVR,462,,,MV,462
+MLI,country,Mali,Republic of Mali,ML,MLI,466,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,CFA Franc BCEAO,XOF,952,Frontier,,ML,466
+MLT,country,Malta,Republic of Malta,MT,MLT,470,Europe,Europe,Southern Europe,150,Euro,EUR,978,Frontier,,MT,470
+MHL,country,Marshall Islands,Republic of the Marshall Islands,MH,MHL,584,Oceania,Pacific,Micronesia,9,US Dollar,USD,840,,,MH,584
+MTQ,country,Martinique,0,MQ,MTQ,474,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Euro,EUR,978,,,MQ,474
+MRT,country,Mauritania,Islamic Republic of Mauritania,MR,MRT,478,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Ouguiya,MRO,478,,,MR,478
+MUS,country,Mauritius,Republic of Mauritius,MU,MUS,480,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Mauritius Rupee,MUR,480,Frontier,,MU,480
+MYT,country,Mayotte,,YT,MYT,175,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Euro,EUR,978,,,YT,175
+MEX,country,Mexico,United Mexican States,MX,MEX,484,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Mexican Peso,MXN,484,Emerging,Latin America,MX,484
+FSM,country,Micronesia (Federated States of),Federated States of Micronesia,FM,FSM,583,Oceania,Pacific,Micronesia,9,US Dollar,USD,840,,,FM,583
+MDA,country,"Moldova, Republic of",Republic of Moldova,MD,MDA,498,Europe,Europe,Eastern Europe,150,Moldovan Leu,MDL,498,,,MD,498
+MCO,country,Monaco,Principality of Monaco,MC,MCO,492,Europe,Europe,Western Europe,150,Euro,EUR,978,,,MC,
+MNG,country,Mongolia,Mongolia,MN,MNG,496,Asia,East Asia,Eastern Asia,142,Tugrik,MNT,496,,,MN,496
+MNE,country,Montenegro,,ME,MNE,499,Europe,Europe,Southern Europe,150,Euro,EUR,978,,,ME,499
+MSR,country,Montserrat,,MS,MSR,500,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,E. Caribbean Dollar,XCD,951,,,MS,500
+MAR,country,Morocco,Kingdom of Morocco,MA,MAR,504,Africa,North Africa,Northern Africa,2,Moroccan Dirham,MAD,504,Frontier,Middle East & North Africa,MA,504
+MOZ,country,Mozambique,Republic of Mozambique,MZ,MOZ,508,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Mozambique Metical,MZN,943,,,MZ,508
+MMR,country,Myanmar,Republic of the Union of Myanmar,MM,MMR,104,Asia,Southeast Asia,South-eastern Asia,142,Kyat,MMK,104,,,MM,104
+NAM,country,Namibia,Republic of Namibia,NA,NAM,516,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Namibia Dollar,NAD,516,,,NA,516
+NRU,country,Nauru,,NR,NRU,520,Oceania,Pacific,Micronesia,9,Australian Dollar,AUD,36,,,NR,520
+NPL,country,Nepal,Nepal,NP,NPL,524,Asia,South Asia,Southern Asia,142,Nepalese Rupee,NPR,524,,,NP,524
+NLD,country,Netherlands,Kingdom of the Netherlands,NL,NLD,528,Europe,Europe,Western Europe,150,Euro,EUR,978,Developed,,NL,528
+NCL,country,New Caledonia,New Caledonia,NC,NCL,540,Oceania,Pacific,Melanesia,9,CFP Franc,XPF,953,,,NC,540
+NZL,country,New Zealand,New Zealand,NZ,NZL,554,Oceania,Pacific,Australia and New Zealand,9,New Zealand Dollar,NZD,554,Developed,,NZ,554
+NIC,country,Nicaragua,Republic of Nicaragua,NI,NIC,558,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Cordoba Oro,NIO,558,,,NI,558
+NER,country,Niger,Republic of Niger,NE,NER,562,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,CFA Franc BCEAO,XOF,952,Frontier,,NE,562
+NGA,country,Nigeria,Federal Republic of Nigeria,NG,NGA,566,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Naira,NGA,566,Frontier,Sub-Saharan Africa,NG,566
+NIU,country,Niue,,NU,NIU,570,Oceania,Pacific,Polynesia,9,New Zealand Dollar,NZD,554,,,NU,570
+NFK,country,Norfolk Island,,NF,NFK,574,Oceania,Pacific,Australia and New Zealand,9,Australian Dollar,AUD,36,,,NF,
+MKD,country,North Macedonia,Republic of North Macedonia,MK,MKD,807,Europe,Europe,Southern Europe,150,Denar,MKD,807,,,MK,807
+MNP,country,Northern Mariana Islands,Commonwealth of the Northern Mariana Islands,MP,MNP,580,Oceania,Pacific,Micronesia,9,US Dollar,USD,840,,,MP,580
+NOR,country,Norway,Kingdom of Norway,NO,NOR,578,Europe,Europe,Northern Europe,150,Norwegian Krone,NOK,578,Developed,,NO,579
+OMN,country,Oman,Sultanate of Oman,OM,OMN,512,Asia,Middle East,Western Asia,142,Rial Omani,OMR,512,Frontier,Middle East & North Africa,OM,512
+PAK,country,Pakistan,Islamic Republic of Pakistan,PK,PAK,586,Asia,South Asia,Southern Asia,142,Pakistan Rupee,PKR,586,Frontier,Asia-Pacific,PK,586
+PLW,country,Palau,Republic of Palau,PW,PLW,585,Oceania,Pacific,Micronesia,9,US Dollar,USD,840,,,PW,585
+PSE,country,Palestine,"Palestine, State of",PS,PSE,275,Asia,Central Asia,Western Asia,142,US Dollar,USD,840,Frontier,,PS,275
+PAN,country,Panama,Republic of Panama,PA,PAN,591,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Balboa,PAB,590,Frontier,Latin America,PA,591
+PNG,country,Papua New Guinea,The Independent State of Papua New Guinea,PG,PNG,598,Oceania,Pacific,Melanesia,9,Kina,PGK,598,,,PG,598
+PRY,country,Paraguay,Republic of Paraguay,PY,PRY,600,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Guarani,PYG,600,,,PY,600
+PER,country,Peru,Republic of Peru,PE,PER,604,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Nuevo Sol,PEN,604,Emerging,Latin America,PE,604
+PHL,country,Philippines,Republic of the Philippines,PH,PHL,608,Asia,Southeast Asia,South-eastern Asia,142,Philippine Peso,PHP,608,Emerging,Asia-Pacific,PH,608
+PCN,country,Pitcairn,,PN,PCN,612,Oceania,Pacific,Polynesia,9,New Zealand Dollar,NZD,554,,,PN,612
+POL,country,Poland,Republic of Poland,PL,POL,616,Europe,Europe,Eastern Europe,150,Zloty,PLN,985,Emerging,Europe,PL,616
+PRT,country,Portugal,Portuguese Republic,PT,PRT,620,Europe,Europe,Southern Europe,150,Euro,EUR,978,Developed,,PT,620
+PRI,country,Puerto Rico,,PR,PRI,630,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,US Dollar,USD,840,,,PR,
+QAT,country,Qatar,State of Qatar,QA,QAT,634,Asia,Middle East,Western Asia,142,Qatari Rial,QAR,634,Emerging,Middle East & North Africa,QA,634
+REU,country,Réunion,,RE,REU,638,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Euro,EUR,978,,,RE,638
+ROU,country,Romania,Romania,RO,ROU,642,Europe,Europe,Eastern Europe,150,Romanian Leu,RON,946,Frontier,Europe,RO,642
+RUS,country,Russian Federation,Russian Federation,RU,RUS,643,Europe,Europe,Eastern Europe,150,Russian Ruble,RUB,643,Emerging,Europe,RU,643
+RWA,country,Rwanda,Republic of Rwanda,RW,RWA,646,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Rwanda Franc,RWF,646,,,RW,646
+BLM,country,Saint Barthélemy,,BL,BLM,652,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Euro,EUR,978,,,BL,652
+SHN,country,"Saint Helena, Ascension and Tristan da Cunha",,SH,SHN,654,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,St. Helena Pound,SHP,654,,,SH,654
+KNA,country,Saint Kitts and Nevis,St. Kitts and Nevis,KN,KNA,659,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,E. Caribbean Dollar,XCD,951,,,KN,659
+LCA,country,Saint Lucia,St. Lucia,LC,LCA,662,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,E. Caribbean Dollar,XCD,951,,,LC,662
+MAF,country,Saint Martin (French part),,MF,MAF,663,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Euro,EUR,978,,,MF,
+SPM,country,Saint Pierre and Miquelon,0,PM,SPM,666,North America,North America,Northern America,19,Euro,EUR,978,,,PM,666
+VCT,country,Saint Vincent and the Grenadines,St. Vincent and the Grenadines,VC,VCT,670,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,E. Caribbean Dollar,XCD,951,,,VC,670
+WSM,country,Samoa,Samoa,WS,WSM,882,Oceania,Pacific,Polynesia,9,Tala,WST,882,,,WS,882
+SMR,country,San Marino,Republic of San Marino,SM,SMR,674,Europe,Europe,Southern Europe,150,Euro,EUR,978,,,SM,674
+STP,country,Sao Tome and Principe,Democratic Republic of São Tomé and Principe,ST,STP,678,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Dobra,STD,678,,,ST,678
+SAU,country,Saudi Arabia,Kingdom of Saudi Arabia,SA,SAU,682,Asia,Middle East,Western Asia,142,Saudi Riyal,SAR,682,,Middle East & North Africa,SA,682
+SEN,country,Senegal,Republic of Senegal,SN,SEN,686,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,CFA Franc BCEAO,XOF,952,Frontier,Sub-Saharan Africa,SN,686
+SRB,country,Serbia,,RS,SRB,688,Europe,Europe,Southern Europe,150,Serbian Dinar,RSD,941,Frontier,,RS,688
+SYC,country,Seychelles,Republic of Seychelles,SC,SYC,690,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Seychelles Rupee,SCR,690,,,SC,690
+SLE,country,Sierra Leone,Republic of Sierra Leone,SL,SLE,694,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Leone,SLL,694,,,SL,694
+SGP,country,Singapore,Republic of Singapore,SG,SGP,702,Asia,Southeast Asia,South-eastern Asia,142,Singapore Dollar,SGD,702,Developed,,SG,702
+SXM,country,Sint Maarten (Dutch part),Sint Maarten (Dutch part),SX,SXM,534,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Netherlands Antillean Guilder,ANG,532,,,SX,534
+SVK,country,Slovakia,Slovak Republic,SK,SVK,703,Europe,Europe,Eastern Europe,150,Euro,EUR,978,,,SK,703
+SVN,country,Slovenia,Republic of Slovenia,SI,SVN,705,Europe,Europe,Southern Europe,150,Euro,EUR,978,Frontier,,SI,705
+SLB,country,Solomon Islands,Solomon Islands,SB,SLB,90,Oceania,Pacific,Melanesia,9,Solomon Is. Dollar,SBD,90,,,SB,90
+SOM,country,Somalia,Somali Democratic Republic,SO,SOM,706,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Somali Shilling,SOS,706,,,SO,706
+ZAF,country,South Africa,Republic of South Africa,ZA,ZAF,710,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Rand,ZAF,710,Emerging,Sub-Saharan Africa,ZA,710
+SGS,country,South Georgia and the South Sandwich Islands,,GS,SGS,239,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Pound Sterling,GBP,826,,,GS,239
+SSD,country,South Sudan,Republic of South Sudan,SS,SSD,728,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,South Sudanese Pound,SSP,728,,,SS,728
+ESP,country,Spain,Kingdom of Spain,ES,ESP,724,Europe,Europe,Southern Europe,150,Euro,EUR,978,Developed,,ES,724
+LKA,country,Sri Lanka,Democratic Socialist Republic of Sri Lanka,LK,LKA,144,Asia,South Asia,Southern Asia,142,Sri Lanka Rupee,LKR,144,Frontier,Asia-Pacific,LK,144
+SDN,country,Sudan,,SD,SDN,729,Africa,North Africa,Northern Africa,2,Sudanese Pound,SDG,938,,,SD,729
+SUR,country,Suriname,Republic of Suriname,SR,SUR,740,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Surinam Dollar,SRD,968,,,SR,740
+SJM,country,Svalbard and Jan Mayen,,SJ,SJM,744,Europe,Europe,Northern Europe,150,Norwegian Krone,NOK,578,,,SJ,
+SWE,country,Sweden,Kingdom of Sweden,SE,SWE,752,Europe,Europe,Northern Europe,150,Swedish Krona,SEK,752,Developed,,SE,752
+CHE,country,Switzerland,Switzerland,CH,CHE,756,Europe,Europe,Western Europe,150,Swiss Franc,CHF,756,Developed,,CH,757
+SYR,country,Syrian Arab Republic,Syrian Arab Republic,SY,SYR,760,Asia,Middle East,Western Asia,142,Syrian Pound,SYP,760,,,SY,
+TWN,country,"Taiwan, Province of China",,TW,TWN,158,Asia,East Asia,Eastern Asia,142,New Taiwan Dollar,TWD,901,Emerging,,TW,
+TJK,country,Tajikistan,Republic of Tajikistan,TJ,TJK,762,Asia,Central Asia,Central Asia,142,Somoni,TJS,972,,,TJ,762
+TZA,country,Tanzania,United Republic of Tanzania,TZ,TZA,834,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Tanzanian Shilling,TZS,834,,Sub-Saharan Africa,TZ,834
+THA,country,Thailand,Kingdom of Thailand,TH,THA,764,Asia,Southeast Asia,South-eastern Asia,142,Baht,THB,764,Emerging,Asia-Pacific,TH,764
+TLS,country,Timor-Leste,Democratic Republic of Timor-Leste,TL,TLS,626,Asia,Southeast Asia,South-eastern Asia,142,US Dollar,USD,840,,,TL,626
+TGO,country,Togo,Republic of Togo,TG,TGO,768,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,CFA Franc BCEAO,XOF,952,Frontier,,TG,768
+TKL,country,Tokelau,,TK,TKL,772,Oceania,Pacific,Polynesia,9,New Zealand Dollar,NZD,554,,,TK,772
+TON,country,Tonga,Kingdom of Tonga,TO,TON,776,Oceania,Pacific,Polynesia,9,Pa'anga,TOP,776,,,TO,776
+TTO,country,Trinidad and Tobago,Republic of Trinidad and Tobago,TT,TTO,780,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Trinidad and Tobago Dollar,TTD,780,Frontier,Latin America,TT,780
+TUN,country,Tunisia,Republic of Tunisia,TN,TUN,788,Africa,North Africa,Northern Africa,2,Tunisian Dinar,TND,788,Frontier,Middle East & North Africa,TN,788
+TUR,country,Turkey,Republic of Turkey,TR,TUR,792,Asia,Central Asia,Western Asia,142,Turkish Lira,TRY,949,Emerging,Europe,TR,792
+TKM,country,Turkmenistan,Turkmenistan,TM,TKM,795,Asia,Central Asia,Central Asia,142,Manat,TMT,934,,,TM,795
+TCA,country,Turks and Caicos Islands,Turks and Caicos Islands,TC,TCA,796,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,US Dollar,USD,840,,,TC,796
+TUV,country,Tuvalu,Tuvalu,TV,TUV,798,Oceania,Pacific,Polynesia,9,Australian Dollar,AUD,36,,,TV,798
+UGA,country,Uganda,Republic of Uganda,UG,UGA,800,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Uganda Shilling,UGX,800,,Sub-Saharan Africa,UG,800
+UKR,country,Ukraine,Ukraine,UA,UKR,804,Europe,Europe,Eastern Europe,150,Ukrainian Hryvnia,UAH,980,Frontier,Europe,UA,804
+ARE,country,United Arab Emirates,United Arab Emirates,AE,ARE,784,Asia,Middle East,Western Asia,142,U.A.E. Dirham,AED,784,Emerging,Middle East & North Africa,AE,784
+GBR,country,United Kingdom,United Kingdom of Great Britain and Northern Ireland,GB,GBR,826,Europe,Europe,Northern Europe,150,Pound Sterling,GBP,826,Developed,,GB,826
+USA,country,United States,United States of America,US,USA,840,North America,North America,Northern America,19,US Dollar,USD,840,Developed,,US,842
+UMI,country,United States Minor Outlying Islands,,UM,UMI,581,Oceania,Pacific,Micronesia,9,US Dollar,USD,840,,,UM,581
+URY,country,Uruguay,Oriental Republic of Uruguay,UY,URY,858,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Peso Uruguayo,UYU,858,,,UY,858
+UZB,country,Uzbekistan,Republic of Uzbekistan,UZ,UZB,860,Asia,Central Asia,Central Asia,142,Uzbekistan Sum,UZS,860,,Central Asia,UZ,860
+VUT,country,Vanuatu,Republic of Vanuatu,VU,VUT,548,Oceania,Pacific,Melanesia,9,Vatu,VUV,548,,,VU,548
+VEN,country,Venezuela,República Bolivariana de Venezuela,VE,VEN,862,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,Bolivar Fuerte,VEF,937,,Latin America,VE,862
+VNM,country,Vietnam,Socialist Republic of Vietnam,VN,VNM,704,Asia,Southeast Asia,South-eastern Asia,142,Dong,VND,704,Frontier,Asia-Pacific,VN,866
+VGB,country,Virgin Islands (British),,VG,VGB,92,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,US Dollar,USD,X840,,,VG,92
+VIR,country,Virgin Islands (U.S.),,VI,VIR,850,South America,Latin America and the Caribbean,Latin America and the Caribbean,19,US Dollar,USD,840,,,VI,850
+WLF,country,Wallis and Futuna,,WF,WLF,876,Oceania,Pacific,Polynesia,9,CFP Franc,XPF,953,,,WF,876
+ESH,country,Western Sahara,,EH,ESH,732,Africa,North Africa,Northern Africa,2,Moroccan Dirham,MAD,504,,,EH,732
+YEM,country,Yemen,Republic of Yemen,YE,YEM,887,Asia,Middle East,Western Asia,142,Yemeni Rial,YER,886,,,YE,887
+ZMB,country,Zambia,Republic of Zambia,ZM,ZMB,894,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Zambian Kwacha,ZMW,967,,Sub-Saharan Africa,ZM,894
+ZWE,country,Zimbabwe,Republic of Zimbabwe,ZW,ZWE,716,Africa,Sub-Saharan Africa,Sub-Saharan Africa,2,Zimbabwe Dollar,ZWD,716,Frontier,,ZW,716
+WD,group,World,,,,,,,,,,,,,,W00,0
+EU,group,European Union,,,,,,,,,Euro,EUR,978,,,B0,
+EZ,group,Eurozone,,,,,,,,,,,,,,U2,
