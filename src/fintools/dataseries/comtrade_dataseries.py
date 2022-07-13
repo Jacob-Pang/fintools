@@ -104,9 +104,9 @@ class ComtradeGoodsDataSeries (FintoolsDataSeries):
                     counterparty_comtrade_id = comtrade_entity_id_mapper.get(counterparty_entity)
                     update_pytasks.append(
                         PyTask( # Generate pytask accepting access_token parameter
-                            self.update_pytask, trade_direction_id=trade_direction_id,
-                            reporter_comtrade_id=reporter_comtrade_id,
-                            counterparty_comtrade_id=counterparty_comtrade_id,
+                            self.update_pytask, trade_direction_id=int(trade_direction_id),
+                            reporter_comtrade_id=int(reporter_comtrade_id),
+                            counterparty_comtrade_id=int(counterparty_comtrade_id),
                             reporting_entity=reporting_entity, counterparty_entity=counterparty_entity,
                             request_provider_usage={request_provider.unique_id: 1}
                         )
