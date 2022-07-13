@@ -40,9 +40,12 @@ class ComtradeGoodsDataSeries (FintoolsDataSeries):
                 f"r={reporter_comtrade_id}&p={counterparty_comtrade_id}&rg={trade_direction_id}&" + \
                 f"cc=ALL&fmt=json").json()
 
-        assert request_json.get("validation").get("status").get("name") == "Ok"
+        assert request_json.get("validation").get("status").get("name") == "Ok", "Encountered error at:\n" + \
+                f"http://comtrade.un.org/api/get?type=C&freq=A&px=HS&ps={year}&" + \
+                f"r={reporter_comtrade_id}&p={counterparty_comtrade_id}&rg={trade_direction_id}&" + \
+                f"cc=ALL&fmt=json"
+        
         observations_json = request_json.get("dataset")
-
         observation_pdf = pd.DataFrame([
                 (observation_json.get("cmdCode"), observation_json.get("cmdDescE"),
                         observation_json.get("TradeValue"))
