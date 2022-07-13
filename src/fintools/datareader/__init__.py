@@ -17,10 +17,12 @@ def get_database(database_id: str = None) -> GitHubDataBase:
     return child_database
 
 def get_entity_metadata(root_database: GitHubDataBase = get_root_database()) -> pd.DataFrame:
-    return root_database.get_child_node("entity_metadata").read_data()
+    return root_database.get_child_node("entity_metadata").read_data() \
+            .set_index("entity")
 
 def get_entity_tracker(root_database: GitHubDataBase = get_root_database()) -> pd.DataFrame:
-    return root_database.get_child_node("entity_tracker").read_data()
+    return root_database.get_child_node("entity_tracker").read_data() \
+            .set_index("entity")
 
 if __name__ == "__main__":
     pass
