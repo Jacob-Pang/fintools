@@ -1,4 +1,4 @@
-from pyutils.database.github_database.github_artifact import GitHubParquetDataFrame
+from pyutils.database.github_database.github_dataframe import GitHubParquetDataFrame
 
 class FintoolsDataSeries (GitHubParquetDataFrame):
     def __init__(self, data_node_id: str, data_source: str, data_periodicity: str,
