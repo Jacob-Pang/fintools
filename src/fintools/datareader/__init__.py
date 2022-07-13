@@ -1,3 +1,4 @@
+import pandas as pd
 from pyutils.database.github_database import GitHubDataBase
 
 def get_root_database() -> GitHubDataBase:
@@ -14,6 +15,12 @@ def get_database(database_id: str = None) -> GitHubDataBase:
     
     child_database = root_database.get_child_node(database_id)
     return child_database
+
+def get_entity_metadata(root_database: GitHubDataBase = get_root_database()) -> pd.DataFrame:
+    return root_database.get_child_node("entity_metadata").read_data()
+
+def get_entity_tracker(root_database: GitHubDataBase = get_root_database()) -> pd.DataFrame:
+    return root_database.get_child_node("entity_tracker").read_data()
 
 if __name__ == "__main__":
     pass
