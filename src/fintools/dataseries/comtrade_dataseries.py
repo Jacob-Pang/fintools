@@ -104,7 +104,8 @@ class ComtradeGoodsDataSeries (FintoolsDataSeries):
                             self.update_pytask, trade_direction_id=trade_direction_id,
                             reporter_comtrade_id=reporter_comtrade_id,
                             counterparty_comtrade_id=counterparty_comtrade_id,
-                            reporting_entity=reporting_entity, counterparty_entity=counterparty_entity
+                            reporting_entity=reporting_entity, counterparty_entity=counterparty_entity,
+                            request_provider_usage={request_provider.unique_id: 1}
                         )
                     )
 
