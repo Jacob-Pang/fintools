@@ -91,8 +91,8 @@ class ComtradeGoodsDataSeries (FintoolsDataSeries):
         entity_metadata = get_entity_metadata(root_database)
         entity_tracker = get_entity_tracker(root_database)
 
-        reporting_entities = entity_tracker["ComtradeGoods"][entity_tracker["ComtradeGoods"] == 1].index
-        comtrade_entity_id_mapper = entity_metadata["ComtradeID"].dropna().to_dict()
+        reporting_entities = entity_tracker["comtradeGoods"][entity_tracker["comtradeGoods"] == 1].index
+        comtrade_entity_id_mapper = entity_metadata["comtradeID"].dropna().to_dict()
         request_provider = RequestProvider([(99, 60 * 60)]) # Maximum of 100 requests per hour.
         update_pytasks = []
 
