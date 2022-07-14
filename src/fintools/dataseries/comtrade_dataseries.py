@@ -148,7 +148,17 @@ class ComtradeAggregator (GroupByTransformer):
     
     def read_data(self, *args, **kwargs) -> any:
         comtrade_pdf = super().read_data(*args, **kwargs)
+        comtrade_pdf["description"] = None
+
         hs_metadata_query = get_root_database().get_child_node("hs_metadata_query")
+
+        for hs_version in comtrade_pdf["HSVersion"].unique():
+            hs_metadata = hs_metadata_query.read_data(hs_version)
+            description_mapper = hs_metadata.set_index("commodityCode")["description"].to_dict()
+
+            mask = comtrade_pdf["HSVersion"] = hs_version
+            comtrade_pdf.loc[mask, "description"] = comtrade_pdf.loc[mask, "commodityCode"] \
+                    .map(description_mapper)
 
         return comtrade_pdf
 
