@@ -38,24 +38,23 @@ class ComtradeGoodsDataSeries (FintoolsDataSeries):
         """
         request_json = requests.get(f"http://comtrade.un.org/api/get?type=C&freq=A&px=HS&ps={year}&" + \
                 f"r={reporter_comtrade_id}&p={counterparty_comtrade_id}&rg={trade_direction_id}&" + \
-                f"cc=ALL&fmt=json").json()
+                f"cc=AG6&fmt=json").json()
 
         assert request_json.get("validation").get("status").get("name") == "Ok", "Encountered error at:\n" + \
                 f"http://comtrade.un.org/api/get?type=C&freq=A&px=HS&ps={year}&" + \
                 f"r={reporter_comtrade_id}&p={counterparty_comtrade_id}&rg={trade_direction_id}&" + \
-                f"cc=ALL&fmt=json"
+                f"cc=AG6&fmt=json"
         
         observations_json = request_json.get("dataset")
         observation_pdf = pd.DataFrame([
-                (observation_json.get("cmdCode"), observation_json.get("cmdDescE"),
+                (observation_json.get("pfCode"), observation_json.get("cmdCode"), observation_json.get("cmdDescE"),
                         observation_json.get("TradeValue"))
                 for observation_json in observations_json
-                if observation_json.get("IsLeaf")
-            ], columns=["commodity_code", "description", "trade_value"])
+            ], columns=["HSVersion", "commodityCode", "description", "tradeValue"])
 
-        observation_pdf["trade_direction"] = COMTRADE_TRADE_DIRECTION_ID_MAPPER.get(trade_direction_id)
-        observation_pdf["reporting_entity"] = reporting_entity
-        observation_pdf["counterparty_entity"] = counterparty_entity
+        observation_pdf["tradeDirection"] = COMTRADE_TRADE_DIRECTION_ID_MAPPER.get(trade_direction_id)
+        observation_pdf["reportingEntity"] = reporting_entity
+        observation_pdf["counterpartyEntity"] = counterparty_entity
         observation_pdf["year"] = year
 
         time.sleep(.5) # Prevent over-requesting.
@@ -83,7 +82,7 @@ class ComtradeGoodsDataSeries (FintoolsDataSeries):
 
         if self.version_timestamp is None: # Assumed no prior saved data
             return self.save_data(observation_pdf, access_token=access_token,
-                    partition_columns=["trade_direction", "reporting_entity", "year"])
+                    partition_columns=["tradeDirection", "reportingEntity", "year"])
 
         self.update_data(observation_pdf, access_token=access_token)
 
@@ -92,8 +91,8 @@ class ComtradeGoodsDataSeries (FintoolsDataSeries):
         entity_metadata = get_entity_metadata(root_database)
         entity_tracker = get_entity_tracker(root_database)
 
-        reporting_entities = entity_tracker["comtrade"][entity_tracker["comtrade"] == 1].index
-        comtrade_entity_id_mapper = entity_metadata["comtrade_id"].dropna().to_dict()
+        reporting_entities = entity_tracker["ComtradeGoods"][entity_tracker["ComtradeGoods"] == 1].index
+        comtrade_entity_id_mapper = entity_metadata["ComtradeID"].dropna().to_dict()
         request_provider = RequestProvider([(99, 60 * 60)]) # Maximum of 100 requests per hour.
         update_pytasks = []
 

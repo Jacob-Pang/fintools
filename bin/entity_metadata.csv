@@ -1,4 +1,4 @@
-entity,category,short_name,long_name,ISO2,ISO3,country_code,continent,region,sub_region,region_code,currency,currency_alpha_code,currency_num_code,msci_market_category,iif_market_category,comtrade_id,imf_sdmx_id
+entity,category,shortName,longName,ISO2,ISO3,countryCode,continent,region,subRegion,regionCode,currency,currencyAlphaCode,currencyNumberCode,MSCIMarket,IIFMarket,comtradeID,IMFSdmxID
 AFG,country,Afghanistan,Islamic State of Afghanistan,AF,AFG,4,Asia,South Asia,Southern Asia,142,Afghani,AFN,971,,,4,AF
 ALA,country,Åland Islands,,AX,ALA,248,Europe,Europe,Northern Europe,150,Euro,EUR,978,,,,AX
 ALB,country,Albania,Republic of Albania,AL,ALB,8,Europe,Europe,Southern Europe,150,Lek,ALL,8,,,8,AL
