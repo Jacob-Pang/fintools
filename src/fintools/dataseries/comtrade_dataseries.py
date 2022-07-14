@@ -5,6 +5,8 @@ import pandas as pd
 
 from pyutils.pytask_scheduler import PyTask
 from pyutils.pytask_scheduler.request_provider import RequestProvider
+from pyutils.database.dataframe import DataFrame
+from pyutils.database.dataframe_transformer import DataFrameTransformer, GroupByTransformer
 from fintools.dataseries import FintoolsDataSeries
 from fintools.datareader import get_root_database, get_entity_metadata, get_entity_tracker
 
@@ -112,6 +114,43 @@ class ComtradeGoodsDataSeries (FintoolsDataSeries):
                     )
 
         return request_provider, update_pytasks
+
+class ComtradeAggregator (GroupByTransformer):
+    class ComtradeAggregatorPreprocessor (DataFrameTransformer):
+        def __init__(self, data_node_id: str, connected_dataframe: DataFrame, aggregate_factor: int,
+            connection_dpath: str = None, description: str = None, parent_database: any = None,
+            **field_kwargs) -> None:
+
+            super().__init__(data_node_id, connected_dataframe, connection_dpath, description,
+                    parent_database, **field_kwargs)
+            
+            self.aggregate_factor = aggregate_factor
+
+        def read_data(self, *args, **kwargs) -> any:
+            comtrade_pdf = super().read_data(*args, **kwargs)
+            comtrade_pdf[:, "commodityCode"] = comtrade_pdf["commodityCode"] // self.aggregate_factor
+
+            return comtrade_pdf.drop(columns=["description"])
+
+    def __init__(self, data_node_id: str, connected_dataframe: ComtradeGoodsDataSeries,
+        aggregate_factor: int = 2, connection_dpath: str = None, description: str = None,
+        parent_database: any = None, **field_kwargs) -> None:
+
+        preprocessor = ComtradeAggregator.ComtradeAggregatorPreprocessor(
+            f"{data_node_id}_preprocessor", connected_dataframe, aggregate_factor
+        )
+
+        groupby_field_names = ["HSVersion", "commodityCode", "tradeDirection", "reportingEntity",
+                "counterpartyEntity", "year"]
+
+        super().__init__(data_node_id, preprocessor, connection_dpath, groupby_field_names,
+                description, parent_database=parent_database, **field_kwargs)
+    
+    def read_data(self, *args, **kwargs) -> any:
+        comtrade_pdf = super().read_data(*args, **kwargs)
+        hs_metadata_query = get_root_database().get_child_node("hs_metadata_query")
+
+        return comtrade_pdf
 
 if __name__ == "__main__":
     pass
