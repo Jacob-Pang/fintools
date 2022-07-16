@@ -38,26 +38,28 @@ class ComtradeGoodsDataSeries (FintoolsDataSeries):
             reporting_entity (str): The entity code for the reporting entity.
             counterparty_entity (str): The entity code for the counterparty.
         """
-        request_json = requests.get(f"http://comtrade.un.org/api/get?type=C&freq=A&px=HS&ps={year}&" + \
-                f"r={reporter_comtrade_id}&p={counterparty_comtrade_id}&rg={trade_direction_id}&" + \
-                f"cc=AG6&fmt=json").json()
-
-        assert request_json.get("validation").get("status").get("name") == "Ok", "Encountered error at:\n" + \
-                f"http://comtrade.un.org/api/get?type=C&freq=A&px=HS&ps={year}&" + \
-                f"r={reporter_comtrade_id}&p={counterparty_comtrade_id}&rg={trade_direction_id}&" + \
-                f"cc=AG6&fmt=json"
+        try:
+            request_json = requests.get(f"http://comtrade.un.org/api/get?type=C&freq=A&px=HS&ps={year}&" + \
+                    f"r={reporter_comtrade_id}&p={counterparty_comtrade_id}&rg={trade_direction_id}&" + \
+                    f"cc=AG6&fmt=json").json()
         
-        observations_json = request_json.get("dataset")
-        observation_pdf = pd.DataFrame([
-                (observation_json.get("pfCode"), observation_json.get("cmdCode"), observation_json.get("cmdDescE"),
-                        observation_json.get("TradeValue"))
-                for observation_json in observations_json
-            ], columns=["HSVersion", "commodityCode", "description", "tradeValue"])
+            observations_json = request_json.get("dataset")
+            observation_pdf = pd.DataFrame([
+                    (observation_json.get("pfCode"), observation_json.get("cmdCode"), observation_json.get("cmdDescE"),
+                            observation_json.get("TradeValue"))
+                    for observation_json in observations_json
+                ], columns=["HSVersion", "commodityCode", "description", "tradeValue"])
 
-        observation_pdf["tradeDirection"] = COMTRADE_TRADE_DIRECTION_ID_MAPPER.get(trade_direction_id)
-        observation_pdf["reportingEntity"] = reporting_entity
-        observation_pdf["counterpartyEntity"] = counterparty_entity
-        observation_pdf["year"] = year
+            observation_pdf["tradeDirection"] = COMTRADE_TRADE_DIRECTION_ID_MAPPER.get(trade_direction_id)
+            observation_pdf["reportingEntity"] = reporting_entity
+            observation_pdf["counterpartyEntity"] = counterparty_entity
+            observation_pdf["year"] = year
+        except Exception as get_exception:
+            raise Exception(
+                f"Encountered GET request exception from:\nhttp://comtrade.un.org/api/get?type=C&freq=A&px=HS&ps={year}&" + \
+                f"r={reporter_comtrade_id}&p={counterparty_comtrade_id}&rg={trade_direction_id}&" + \
+                f"cc=AG6&fmt=json\nTrace:{get_exception}"
+            )
 
         time.sleep(.5) # Prevent over-requesting.
         return observation_pdf
