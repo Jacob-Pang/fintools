@@ -65,14 +65,14 @@ class ComtradeGoodsDataSeries (FintoolsDataSeries):
         return observation_pdf
 
     def update_pytask(self, access_token: str, trade_direction_id: int, reporter_comtrade_id: int,
-        counterparty_comtrade_id: int, reporting_entity: str, counterparty_entity: str) -> None:
+        counterparty_comtrade_id: int, reporting_entity: str, counterparty_entity: str) -> tuple:
 
         permutation_key = (trade_direction_id, reporter_comtrade_id, counterparty_comtrade_id)
 
         if not permutation_key in self.update_tracker:
             year = datetime.date.today().year - 10
         elif self.update_tracker.get(permutation_key) == datetime.date.today().year:
-            return # Updated to most available data
+            return (False, False) # Updated to most available data
         else:
             year = self.update_tracker.get(permutation_key) + 1
         
@@ -80,7 +80,7 @@ class ComtradeGoodsDataSeries (FintoolsDataSeries):
                 counterparty_comtrade_id, reporting_entity, counterparty_entity)
         
         if not observation_pdf.shape[0]:
-            return # Empty dataframe
+            return (True, True) # Empty dataframe
         
         self.update_tracker[permutation_key] = year
 
@@ -89,8 +89,9 @@ class ComtradeGoodsDataSeries (FintoolsDataSeries):
                     partition_columns=["tradeDirection", "reportingEntity", "year"])
 
         self.update_data(observation_pdf, access_token=access_token)
+        return (True, True)
 
-    def get_update_pytasks(self) -> tuple:
+    def get_update_pytasks(self) -> list:
         root_database = get_root_database()
         entity_metadata = get_entity_metadata(root_database)
         entity_tracker = get_entity_tracker(root_database)
@@ -98,6 +99,7 @@ class ComtradeGoodsDataSeries (FintoolsDataSeries):
         reporting_entities = entity_tracker["comtradeGoods"][entity_tracker["comtradeGoods"] == 1].index
         comtrade_entity_id_mapper = entity_metadata["comtradeID"].dropna().to_dict()
         request_provider = RequestProvider([(99, 60 * 60)]) # Maximum of 100 requests per hour.
+        request_provider.create_gate() # Create only one api gate
         update_pytasks = []
 
         for trade_direction_id in COMTRADE_TRADE_DIRECTION_ID_MAPPER:
@@ -107,15 +109,17 @@ class ComtradeGoodsDataSeries (FintoolsDataSeries):
                     counterparty_comtrade_id = comtrade_entity_id_mapper.get(counterparty_entity)
                     update_pytasks.append(
                         PyTask( # Generate pytask accepting access_token parameter
-                            self.update_pytask, trade_direction_id=int(trade_direction_id),
+                            self.update_pytask,
+                            trade_direction_id=int(trade_direction_id),
                             reporter_comtrade_id=int(reporter_comtrade_id),
                             counterparty_comtrade_id=int(counterparty_comtrade_id),
                             reporting_entity=reporting_entity, counterparty_entity=counterparty_entity,
-                            request_provider_usage={request_provider.unique_id: 1}
+                            max_reties=5, # Buffer for exceptions
+                            request_provider_usage={request_provider: 1}
                         )
                     )
 
-        return request_provider, update_pytasks
+        return update_pytasks
 
 class ComtradeAggregator (GroupByTransformer):
     class ComtradeAggregatorPreprocessor (DataFrameTransformer):
