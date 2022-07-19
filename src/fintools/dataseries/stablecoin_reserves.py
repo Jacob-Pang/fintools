@@ -1,3 +1,4 @@
+import datetime
 import pandas as pd
 
 from bs4 import BeautifulSoup
@@ -49,11 +50,18 @@ class USDTReservesDataSeries (FintoolsCSVDataSeries):
         observation_pdf = pd.DataFrame(reserves_breakdown.items(), columns=["assetCategory", "proportion"])
         observation_pdf["proportion"] /= observation_pdf["proportion"].sum()
         observation_pdf["value"] = observation_pdf["proportion"] * reserves_value
+        observation_pdf["date"] = datetime.date.today().strftime(r"%Y-%m-%d")
+        observation_pdf["date"] = pd.to_datetime(observation_pdf["date"], format=r"%Y-%m-%d")
 
         if self.version_timestamp is None: # Assumed no prior saved data
             return self.save_data(observation_pdf, access_token=access_token)
 
         self.update_data(observation_pdf, access_token=access_token)
+
+    def drop_duplicates(self, artifact_data: pd.DataFrame, ignore_index: bool = True) -> None:
+        # Override drop duplicates method
+        artifact_data.drop_duplicates(subset=["date", "assetCategory"], inplace=True,
+                ignore_index=ignore_index, keep="last")
 
     def get_update_pytasks(self) -> list:
         return [PyTask(self.update_pytask, freq=(60 * 60 - 10))]
