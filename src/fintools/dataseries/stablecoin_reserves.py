@@ -3,9 +3,10 @@ import pandas as pd
 
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.by import By
-from fintools.dataseries import FintoolsCSVDataSeries
 from pyutils.pytask_scheduler import PyTask
 from pyutils.selenium_ext.websurfer.chrome import ChromeSurfer
+from fintools.dataseries import FintoolsCSVDataSeries
+from fintools.datareader.market_variables.cryptocurrency import coingecko_ticker_metadata, coingecko_get_price
 
 class USDTReservesDataSeries (FintoolsCSVDataSeries):
     def __init__(self, data_node_id: str, connection_dpath: str = '', parent_database: any = None,
