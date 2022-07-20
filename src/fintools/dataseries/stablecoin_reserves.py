@@ -2,6 +2,7 @@ import datetime
 import pandas as pd
 
 from bs4 import BeautifulSoup
+from selenium.webdriver.common.by import By
 from fintools.dataseries import FintoolsCSVDataSeries
 from pyutils.pytask_scheduler import PyTask
 from pyutils.selenium_ext.websurfer.chrome import ChromeSurfer
