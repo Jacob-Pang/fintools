@@ -109,7 +109,7 @@ class DAIReservesDataSeries (FintoolsCSVDataSeries):
 
             # Scrape ERC-20 LP
             websurfer.find_element(By.XPATH, "//p[contains(text(), 'ERC-20 LP')]").click()
-            websurfer.pause(5)
+            websurfer.pause(10)
 
             soup = BeautifulSoup(websurfer.page_source, "html.parser")
             breakdown_table = soup.find("p", string="ERC-20 LP").parent.parent.parent \
@@ -132,7 +132,7 @@ class DAIReservesDataSeries (FintoolsCSVDataSeries):
 
             # Scrape RWA
             websurfer.find_element(By.XPATH, "//p[contains(text(), 'Real World Assets')]").click()
-            websurfer.pause(5)
+            websurfer.pause(10)
 
             soup = BeautifulSoup(websurfer.page_source, "html.parser")
             breakdown_table = soup.find("p", string="Real World Assets").parent.parent.parent \
@@ -155,7 +155,7 @@ class DAIReservesDataSeries (FintoolsCSVDataSeries):
 
             # Scrape PSM
             websurfer.find_element(By.XPATH, "//p[contains(text(), 'Peg Stability Modules')]").click()
-            websurfer.pause(5)
+            websurfer.pause(10)
 
             soup = BeautifulSoup(websurfer.page_source, "html.parser")
             breakdown_table = soup.find("p", string="Peg Stability Modules").parent.parent.parent \
@@ -198,6 +198,9 @@ class DAIReservesDataSeries (FintoolsCSVDataSeries):
 
     def get_update_pytasks(self) -> list:
         return [PyTask(self.update_pytask, freq=(60 * 60))]
+
+class USDCReservesDataSeries (FintoolsCSVDataSeries):
+    pass
 
 if __name__ == "__main__":
     pass
