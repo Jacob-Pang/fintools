@@ -18,36 +18,39 @@ class USDTReservesDataSeries (FintoolsCSVDataSeries):
         )
 
     def update_pytask(self, access_token: str) -> tuple:
-        # Webscrapping caa 19 Jun 2022
+        # Webscrapping caa 25 Jun 2022
         with ChromeSurfer(*ChromeSurfer.default_headless_option_args()) as websurfer:
             websurfer.get("https://tether.to/en/transparency/#reports")
-            websurfer.pause(5)
+            websurfer.pause(10)
             soup = BeautifulSoup(websurfer.page_source, "html.parser")
 
-        reserves_breakdown = {}
-        main_breakdown = soup.find("div", attrs={"class": "MuiBox-root jss235"})
+            reserves_breakdown = {}
+            main_breakdown, sub_breakdown = soup.find("p", text="Reserves Breakdown").parent \
+                    .find("div", recursive=False).find_all("div", recursive=False)[1] \
+                    .find_all("div", recursive=False)
 
-        for main_component in main_breakdown.find_all("div", recursive=False):
-            percentage, asset_category = main_component.text.split("%")
-            reserves_breakdown[asset_category] = float(percentage) / 100
+            for main_component in main_breakdown.find_all("div", recursive=False):
+                percentage, asset_category = main_component.text.split("%")
+                reserves_breakdown[asset_category] = float(percentage) / 100
 
-        main_component = soup.find("h6", attrs={"class": "MuiTypography-root jss88 MuiTypography-h6"}).text
-        main_percentage = reserves_breakdown.pop(main_component)
+            main_component = sub_breakdown.find("h6", recursive=False).text
+            main_percentage = reserves_breakdown.pop(main_component)
+            sub_breakdown = sub_breakdown.find("div", recursive=False).find_all("div", recursive=False)[1] \
+                    .find("div", recursive=False)
 
-        sub_breakdown = soup.find("div", attrs={"class": "MuiBox-root jss258"})
+            for sub_component in sub_breakdown.find_all("div", recursive=False):
+                percentage, asset_category = sub_component.text.split("%")
+                reserves_breakdown[asset_category] = float(percentage) / 100 * main_percentage
 
-        for sub_component in sub_breakdown.find_all("div", recursive=False):
-            percentage, asset_category = sub_component.text.split("%")
-            reserves_breakdown[asset_category] = float(percentage) / 100 * main_percentage
-
-        with ChromeSurfer(*ChromeSurfer.default_headless_option_args()) as websurfer:
             websurfer.get("https://tether.to/en/transparency/")    
             websurfer.pause(5)
             soup = BeautifulSoup(websurfer.page_source, "html.parser")
 
-        reserves_value = soup.find("p", attrs={"class": f"MuiTypography-root jss87 MuiTypography-body1"}).text \
-                .replace('$', '').replace(',', '')
-        reserves_value = float(reserves_value)
+            reserves_value = soup.find("span", text="USD₮ in Tether").parent \
+                    .find("div", recursive=False).find("h4").text \
+                    .replace('$', '').replace(',', '')
+
+            reserves_value = float(reserves_value)
 
         observation_pdf = pd.DataFrame(reserves_breakdown.items(), columns=["assetCategory", "proportion"])
         observation_pdf["proportion"] /= observation_pdf["proportion"].sum()
