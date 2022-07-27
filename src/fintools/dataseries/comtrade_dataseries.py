@@ -48,7 +48,8 @@ class ComtradeGoodsDataSeries (FintoolsDataSeries):
                     (observation_json.get("pfCode"), observation_json.get("cmdCode"), observation_json.get("cmdDescE"),
                             observation_json.get("TradeValue"))
                     for observation_json in observations_json
-                ], columns=["HSVersion", "commodityCode", "description", "tradeValue"])
+                ] if observations_json else [],
+                columns=["HSVersion", "commodityCode", "description", "tradeValue"])
 
             observation_pdf["tradeDirection"] = COMTRADE_TRADE_DIRECTION_ID_MAPPER.get(trade_direction_id)
             observation_pdf["reportingEntity"] = reporting_entity
