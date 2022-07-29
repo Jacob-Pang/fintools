@@ -65,7 +65,7 @@ def scrape_marketwatch_ticker_history(ticker: str, ticker_category: str, start_d
         ticker_history_values.append(scrape_marketwatch_ticker(ticker, ticker_category, websurfer.page_source))
 
         soup = BeautifulSoup(websurfer.page_source, "html.parser")
-        next_page_link = soup.find("div", attrs={"class": "tab__pane is-active j-tabPane"}) \
+        next_page_link = soup.find("div", attrs={"data-tab-pane": "Daily"}) \
                 .find("div", attrs={"class": "pagination"}) \
                 .find("a", attrs={"class": "link align--right j-next"})
 
