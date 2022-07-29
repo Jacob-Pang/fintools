@@ -15,9 +15,9 @@ def effective_fed_funds_rate(start: datetime.date = datetime.date(2000, 1, 1),
         end (datetime.date): The ending date.
     
     Returns:
-        pdf (pd.DataFrame, Index: [date], Columns: [effective_fed_funds_rate,
-            1st_percentile, 25th_percentile, 75th_percentile, 99th_percentile,
-            volume, target_rate_lower_bound, target_rate_upper_bound])
+        pdf (pd.DataFrame, Index: [date], Columns: [effectiveFedFundsRate,
+            1stPercentile, 25thPercentile, 75thPercentile, 99thPercentile,
+            volume, targetRateLowerBound, targetRateUpperBound])
     """
     download_link = "https://markets.newyorkfed.org/read?" \
         + f"startDt={start.strftime(r'%Y-%m-%d')}&" \
@@ -26,14 +26,14 @@ def effective_fed_funds_rate(start: datetime.date = datetime.date(2000, 1, 1),
 
     column_map = {
         "Effective Date":       "date",
-        "Rate (%)":             "effective_fed_funds_rate",
-        "1st Percentile (%)":   "1st_percentile",
-        "25th Percentile (%)":  "25th_percentile",
-        "75th Percentile (%)":  "75th_percentile",
-        "99th Percentile (%)":  "99th_percentile",
+        "Rate (%)":             "effectiveFedFundsRate",
+        "1st Percentile (%)":   "1stPercentile",
+        "25th Percentile (%)":  "25thPercentile",
+        "75th Percentile (%)":  "75thPercentile",
+        "99th Percentile (%)":  "99thPercentile",
         "Volume ($Billions)":   "volume",
-        "Target Rate From (%)": "target_rate_lower_bound",
-        "Target Rate To (%)":   "target_rate_upper_bound"
+        "Target Rate From (%)": "targetRateLowerBound",
+        "Target Rate To (%)":   "targetRateUpperBound"
     }
 
     pdf = pd.read_csv(download_link).rename(columns=column_map) \
