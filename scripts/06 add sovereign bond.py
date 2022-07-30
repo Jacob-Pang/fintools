@@ -2,6 +2,7 @@
 import bs4
 import fintools
 import os
+import requests
 import sys
 import wget
 import pandas as pd
@@ -15,13 +16,16 @@ par_dpath = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(par_dpath)
 
 import private_dataseries.sovereign_bond as sovereign_bond
-
-mainify_dependencies(sovereign_bond.SovereignBondDataSeries, dependency_graph=DependencyGraph(bs4, fintools, wget))
+mainify_dependencies(
+    sovereign_bond.SovereignBondDataSeries,
+    dependency_graph=DependencyGraph(bs4, fintools, requests, wget)
+)
 
 # Settings and parameters
 bin_dpath = os.path.join(par_dpath, "bin")
-access_token = "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"
+data_bin_dpath = os.path.join(par_dpath, "data_bin")
 
+access_token = input("Enter access token: ")
 root_database = get_root_database()
 markets_database = get_database("markets_database")
 
@@ -42,11 +46,9 @@ observation_pdfs = []
 
 for entity, maturityMonths, ticker in zip(sovereign_bond_tickers_pdf.entity, sovereign_bond_tickers_pdf.maturityMonths,
         sovereign_bond_tickers_pdf.ticker):
-    observation_pdf = pd.read_csv(os.path.join(bin_dpath, f"{ticker}.csv"), index_col=0)
-    observation_pdf["entity"] = entity
-    observation_pdf["maturityMonths"] = maturityMonths
+    
+    observation_pdf = pd.read_csv(os.path.join(data_bin_dpath, f"{ticker}.csv"), index_col=0)
     observation_pdf["date"] = pd.to_datetime(observation_pdf["date"], format="%Y-%m-%d")
-
     observation_pdfs.append(observation_pdf)
 
 observation_pdf = pd.concat(observation_pdfs)
@@ -54,8 +56,8 @@ observation_pdf = pd.concat(observation_pdfs)
 # Creating dataseries node
 import __main__
 sovereign_bond_node = __main__.SovereignBondDataSeries("sovereign_bond")
-markets_database.add_connected_child_node(sovereign_bond_node)
 
+markets_database.add_connected_child_node(sovereign_bond_node)
 sovereign_bond_node.save_data(observation_pdf, access_token=access_token, partition_columns=["entity"])
 
 # Saving databases
