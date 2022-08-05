@@ -6,14 +6,14 @@ from fintools.dataseries import DataSeriesInterface
 from fintools.datareader.market_variables.cryptocurrency import coingecko_ticker_metadata, coingecko_get_price
 from pyutils.pytask_scheduler import PyTask
 from pyutils.selenium_ext.websurfer.chrome import ChromeSurfer
-from pyutils.database.github_database.github_dataframe import GitHubDataFrame
+from pyutils.database.github_database.github_dataframe import GitHubGraphDataFrame
 from selenium.webdriver.common.by import By
 
-class CoinReservesInterface (DataSeriesInterface, GitHubDataFrame):
+class CoinReservesInterface (DataSeriesInterface, GitHubGraphDataFrame):
     def __init__(self, data_source: str, data_node_id: str, connection_dpath: str = '',
         host_database: any = None, description: str = None, **field_kwargs) -> None:
         DataSeriesInterface.__init__(self, data_source, "D")
-        GitHubDataFrame.__init__(self, data_node_id, connection_dpath, description,
+        GitHubGraphDataFrame.__init__(self, data_node_id, connection_dpath, description,
                 host_database, **field_kwargs)
 
     def update_pytask(self) -> tuple:
