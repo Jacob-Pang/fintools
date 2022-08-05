@@ -189,7 +189,7 @@ class DAIReserves (CoinReservesInterface):
         observation_pdf = pd.DataFrame([
             (asset_category, asset_amount, asset_value) for asset_category, (asset_amount, asset_value)
             in reserves_breakdown.items()
-        ], columns=["assetCategory", "assetAmount", "value"])
+        ], columns=["asset", "assetAmount", "value"])
 
         observation_pdf["date"] = datetime.date.today().strftime(r"%Y-%m-%d")
         observation_pdf["date"] = pd.to_datetime(observation_pdf["date"], format=r"%Y-%m-%d")
