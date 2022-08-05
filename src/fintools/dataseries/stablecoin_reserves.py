@@ -2,22 +2,38 @@ import datetime
 import pandas as pd
 
 from bs4 import BeautifulSoup
-from selenium.webdriver.common.by import By
+from fintools.dataseries import DataSeriesInterface
+from fintools.datareader.market_variables.cryptocurrency import coingecko_ticker_metadata, coingecko_get_price
 from pyutils.pytask_scheduler import PyTask
 from pyutils.selenium_ext.websurfer.chrome import ChromeSurfer
-from fintools.dataseries import FintoolsCSVDataSeries
-from fintools.datareader.market_variables.cryptocurrency import coingecko_ticker_metadata, coingecko_get_price
+from pyutils.database.github_database.github_dataframe import GitHubDataFrame
+from selenium.webdriver.common.by import By
 
-class USDTReservesDataSeries (FintoolsCSVDataSeries):
-    def __init__(self, data_node_id: str, connection_dpath: str = '', parent_database: any = None,
+class CoinReservesInterface (DataSeriesInterface, GitHubDataFrame):
+    def __init__(self, data_source: str, data_node_id: str, connection_dpath: str = '',
+        host_database: any = None, description: str = None, **field_kwargs) -> None:
+        DataSeriesInterface.__init__(self, data_source, "D")
+        GitHubDataFrame.__init__(self, data_node_id, connection_dpath, description,
+                host_database, **field_kwargs)
+
+    def update_pytask(self) -> tuple:
+        raise NotImplementedError()
+    
+    def merge_function(self, artifact_data: pd.DataFrame, other: pd.DataFrame) -> pd.DataFrame:
+        return pd.concat([artifact_data, other], axis=0).drop_duplicates(subset=["date", "asset"],
+                ignore_index=True, keep="last")
+
+    def get_update_pytasks(self, repeat_tasks: bool = True) -> set:
+        freq = (60 * 60) if repeat_tasks else None
+        return [PyTask(self.update_pytask, freq=freq)]
+
+class USDTReserves (CoinReservesInterface):
+    def __init__(self, data_node_id: str, connection_dpath: str = '', host_database: any = None,
         **field_kwargs) -> None:
-        super().__init__(
-            data_node_id, "https://tether.to/en/transparency/#reports", "daily",
-            connection_dpath, "Stablecoin Tether (USDT) reserves breakdown", parent_database,
-            **field_kwargs
-        )
+        super().__init__("https://tether.to/en/transparency/#reports", data_node_id, connection_dpath,
+                host_database, "Tether (USDT) reserves composition.", **field_kwargs)
 
-    def update_pytask(self, access_token: str) -> tuple:
+    def update_pytask(self) -> tuple:
         # Webscrapping caa 25 Jun 2022
         with ChromeSurfer(*ChromeSurfer.default_headless_option_args()) as websurfer:
             websurfer.get("https://tether.to/en/transparency/#reports")
@@ -52,35 +68,24 @@ class USDTReservesDataSeries (FintoolsCSVDataSeries):
 
             reserves_value = float(reserves_value)
 
-        observation_pdf = pd.DataFrame(reserves_breakdown.items(), columns=["assetCategory", "proportion"])
+        observation_pdf = pd.DataFrame(reserves_breakdown.items(), columns=["asset", "proportion"])
         observation_pdf["proportion"] /= observation_pdf["proportion"].sum()
         observation_pdf["value"] = observation_pdf["proportion"] * reserves_value
         observation_pdf["date"] = datetime.date.today().strftime(r"%Y-%m-%d")
         observation_pdf["date"] = pd.to_datetime(observation_pdf["date"], format=r"%Y-%m-%d")
 
         if self.version_timestamp is None: # Assumed no prior saved data
-            return self.save_data(observation_pdf, access_token=access_token)
+            return self.save_data(observation_pdf)
 
-        self.update_data(observation_pdf, access_token=access_token)
+        self.update_data(observation_pdf)
 
-    def drop_duplicates(self, artifact_data: pd.DataFrame, ignore_index: bool = True) -> None:
-        # Override drop duplicates method
-        artifact_data.drop_duplicates(subset=["date", "assetCategory"], inplace=True,
-                ignore_index=ignore_index, keep="last")
-
-    def get_update_pytasks(self) -> list:
-        return [PyTask(self.update_pytask, freq=(60 * 60))]
-
-class DAIReservesDataSeries (FintoolsCSVDataSeries):
-    def __init__(self, data_node_id: str, connection_dpath: str = '', parent_database: any = None,
+class DAIReserves (CoinReservesInterface):
+    def __init__(self, data_node_id: str, connection_dpath: str = '', host_database: any = None,
         **field_kwargs) -> None:
-        super().__init__(
-            data_node_id, "https://daistats.com/#/collateral", "daily",
-            connection_dpath, "Stablecoin MakerDao (DAI) reserves breakdown", parent_database,
-            **field_kwargs
-        )
+        super().__init__("https://daistats.com/#/collateral", data_node_id, connection_dpath,
+                host_database, "MakerDAO (DAI) reserves composition.", **field_kwargs)
 
-    def update_pytask(self, access_token: str) -> tuple:
+    def update_pytask(self) -> tuple:
         # Webscrapping caa 20 Jun 2022
         with ChromeSurfer(*ChromeSurfer.default_headless_option_args()) as websurfer:
             websurfer.get("https://daistats.com/#/collateral")
@@ -190,20 +195,9 @@ class DAIReservesDataSeries (FintoolsCSVDataSeries):
         observation_pdf["date"] = pd.to_datetime(observation_pdf["date"], format=r"%Y-%m-%d")
 
         if self.version_timestamp is None: # Assumed no prior saved data
-            return self.save_data(observation_pdf, access_token=access_token)
+            return self.save_data(observation_pdf)
 
-        self.update_data(observation_pdf, access_token=access_token)
-
-    def drop_duplicates(self, artifact_data: pd.DataFrame, ignore_index: bool = True) -> None:
-        # Override drop duplicates method
-        artifact_data.drop_duplicates(subset=["date", "assetCategory"], inplace=True,
-                ignore_index=ignore_index, keep="last")
-
-    def get_update_pytasks(self) -> list:
-        return [PyTask(self.update_pytask, freq=(60 * 60))]
-
-class USDCReservesDataSeries (FintoolsCSVDataSeries):
-    pass
+        self.update_data(observation_pdf)
 
 if __name__ == "__main__":
     pass
