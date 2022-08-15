@@ -3,7 +3,7 @@ class DataSeriesInterface:
         self.data_source = data_source
         self.frequency = frequency
 
-    def get_update_pytasks(self, repeat_tasks: bool = True) -> set:
+    def get_update_pytasks(self, repeat_tasks: bool = True, **default_kwargs) -> set:
         raise NotImplementedError()
 
 if __name__ == "__main__":

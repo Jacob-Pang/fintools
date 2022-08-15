@@ -23,9 +23,9 @@ class CoinReservesInterface (DataSeriesInterface, GitHubGraphDataFrame):
         return pd.concat([artifact_data, other], axis=0).drop_duplicates(subset=["date", "asset"],
                 ignore_index=True, keep="last")
 
-    def get_update_pytasks(self, repeat_tasks: bool = True) -> set:
+    def get_update_pytasks(self, repeat_tasks: bool = True, **default_kwargs) -> set:
         freq = (60 * 60) if repeat_tasks else None
-        return [PyTask(self.update_pytask, freq=freq)]
+        return [PyTask(self.update_pytask, freq=freq, **default_kwargs)]
 
 class USDTReserves (CoinReservesInterface):
     def __init__(self, data_node_id: str, connection_dpath: str = '', host_database: any = None,
@@ -33,9 +33,9 @@ class USDTReserves (CoinReservesInterface):
         super().__init__("https://tether.to/en/transparency/#reports", data_node_id, connection_dpath,
                 host_database, "Tether (USDT) reserves composition.", **field_kwargs)
 
-    def update_pytask(self) -> tuple:
+    def update_pytask(self, websurfer_construct: callable = ChromeSurfer.default_websurfer) -> tuple:
         # Webscrapping caa 25 Jun 2022
-        with ChromeSurfer(*ChromeSurfer.default_headless_option_args()) as websurfer:
+        with websurfer_construct() as websurfer:
             websurfer.get("https://tether.to/en/transparency/#reports")
             websurfer.pause(10)
             soup = BeautifulSoup(websurfer.page_source, "html.parser")
@@ -85,9 +85,9 @@ class DAIReserves (CoinReservesInterface):
         super().__init__("https://daistats.com/#/collateral", data_node_id, connection_dpath,
                 host_database, "MakerDAO (DAI) reserves composition.", **field_kwargs)
 
-    def update_pytask(self) -> tuple:
+    def update_pytask(self, websurfer_construct: callable = ChromeSurfer.default_websurfer) -> tuple:
         # Webscrapping caa 20 Jun 2022
-        with ChromeSurfer(*ChromeSurfer.default_headless_option_args()) as websurfer:
+        with websurfer_construct() as websurfer:
             websurfer.get("https://daistats.com/#/collateral")
 
             while "Overview" not in websurfer.page_source:

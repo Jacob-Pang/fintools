@@ -108,7 +108,7 @@ class ComtradeGoods (DataSeriesInterface, GitHubGraphDataFrame):
         self.resync_update_tracker()
         self.update_tracker_node.save_data(self.update_tracker, **kwargs)
 
-    def get_update_pytasks(self, repeat_tasks: bool = True) -> set:
+    def get_update_pytasks(self, repeat_tasks: bool = True, **default_kwargs) -> set:
         self.resync_update_tracker()
         self.update_tracker = self.update_tracker_node.read_data()
 
@@ -135,7 +135,8 @@ class ComtradeGoods (DataSeriesInterface, GitHubGraphDataFrame):
                             counterparty_comtrade_id=int(counterparty_comtrade_id),
                             reporting_entity=reporting_entity, counterparty_entity=counterparty_entity,
                             max_retries=5, # Buffer for exceptions
-                            request_provider_usage={request_provider: 1}
+                            request_provider_usage={request_provider: 1},
+                            **default_kwargs
                         )
                     )
 
