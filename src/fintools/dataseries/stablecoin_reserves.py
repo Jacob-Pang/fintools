@@ -117,7 +117,7 @@ class DAIReserves (CoinReservesInterface):
                     reserves_breakdown[asset_category] = (asset_amount, asset_value)
 
             # Scrape ERC-20 LP
-            websurfer.click(XPathIdentifier("//p[contains(text(), 'ERC-20 LP')]"))
+            websurfer.click_element(XPathIdentifier("//p[contains(text(), 'ERC-20 LP')]"))
             websurfer.wait(10)
 
             soup = BeautifulSoup(websurfer.page_source(), "html.parser")
@@ -140,7 +140,7 @@ class DAIReserves (CoinReservesInterface):
                     reserves_breakdown[asset_category] = (asset_amount, asset_value)
 
             # Scrape RWA
-            websurfer.click(XPathIdentifier("//p[contains(text(), 'Real World Assets')]"))
+            websurfer.click_element(XPathIdentifier("//p[contains(text(), 'Real World Assets')]"))
             websurfer.wait(10)
 
             soup = BeautifulSoup(websurfer.page_source(), "html.parser")
@@ -163,7 +163,7 @@ class DAIReserves (CoinReservesInterface):
                     reserves_breakdown[asset_category] = (asset_amount, asset_value)
 
             # Scrape PSM
-            websurfer.click(XPathIdentifier("//p[contains(text(), 'Peg Stability Modules')]"))
+            websurfer.click_element(XPathIdentifier("//p[contains(text(), 'Peg Stability Modules')]"))
             websurfer.wait(10)
 
             soup = BeautifulSoup(websurfer.page_source(), "html.parser")
