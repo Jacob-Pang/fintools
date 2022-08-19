@@ -5,8 +5,9 @@ from bs4 import BeautifulSoup
 from fintools.dataseries import DataSeriesInterface
 from fintools.datareader.market_variables.cryptocurrency import coingecko_ticker_metadata, coingecko_get_price
 from pyutils.pytask_scheduler import PyTask
-from pyutils.selenium_ext.websurfer.chrome import ChromeSurfer
 from pyutils.database.github_database.github_dataframe import GitHubGraphDataFrame
+from pyutils.websurfer import XPathIdentifier
+from pyutils.websurfer.rpa import RPAWebSurfer
 from selenium.webdriver.common.by import By
 
 class CoinReservesInterface (DataSeriesInterface, GitHubGraphDataFrame):
@@ -33,12 +34,12 @@ class USDTReserves (CoinReservesInterface):
         super().__init__("https://tether.to/en/transparency/#reports", data_node_id, connection_dpath,
                 host_database, "Tether (USDT) reserves composition.", **field_kwargs)
 
-    def update_pytask(self, websurfer_construct: callable = ChromeSurfer.default_websurfer) -> tuple:
+    def update_pytask(self, websurfer_initializer: callable = RPAWebSurfer.initializer(headless_mode=True)) -> tuple:
         # Webscrapping caa 25 Jun 2022
-        with websurfer_construct() as websurfer:
+        with websurfer_initializer() as websurfer:
             websurfer.get("https://tether.to/en/transparency/#reports")
-            websurfer.pause(10)
-            soup = BeautifulSoup(websurfer.page_source, "html.parser")
+            websurfer.wait(10)
+            soup = BeautifulSoup(websurfer.page_source(), "html.parser")
 
             reserves_breakdown = {}
             main_breakdown, sub_breakdown = soup.find("p", text="Reserves Breakdown").parent \
@@ -59,8 +60,8 @@ class USDTReserves (CoinReservesInterface):
                 reserves_breakdown[asset_category] = float(percentage) / 100 * main_percentage
 
             websurfer.get("https://tether.to/en/transparency/")    
-            websurfer.pause(5)
-            soup = BeautifulSoup(websurfer.page_source, "html.parser")
+            websurfer.wait(10)
+            soup = BeautifulSoup(websurfer.page_source(), "html.parser")
 
             reserves_value = soup.find("span", text="USD₮ in Tether").parent \
                     .find("div", recursive=False).find("h4").text \
@@ -85,19 +86,19 @@ class DAIReserves (CoinReservesInterface):
         super().__init__("https://daistats.com/#/collateral", data_node_id, connection_dpath,
                 host_database, "MakerDAO (DAI) reserves composition.", **field_kwargs)
 
-    def update_pytask(self, websurfer_construct: callable = ChromeSurfer.default_websurfer) -> tuple:
+    def update_pytask(self, websurfer_initializer: callable = RPAWebSurfer.initializer(headless_mode=True)) -> tuple:
         # Webscrapping caa 20 Jun 2022
-        with websurfer_construct() as websurfer:
+        with websurfer_initializer() as websurfer:
             websurfer.get("https://daistats.com/#/collateral")
 
-            while "Overview" not in websurfer.page_source:
-                websurfer.pause(1) # Busy waiting for page to render
+            while "Overview" not in websurfer.page_source():
+                websurfer.wait(1) # Busy waiting for page to render
 
             reserves_breakdown = dict() # assetCategory: (assetAmount, assetValue)
 
             # Scrape ERC-20
             # Elements cannot be identified by ID or attributes as they dynamically change with actions.
-            soup = BeautifulSoup(websurfer.page_source, "html.parser")
+            soup = BeautifulSoup(websurfer.page_source(), "html.parser")
             breakdown_table = soup.find("p", string="ERC-20").parent.parent.parent.find("div")
 
             for reserves_component in breakdown_table.find_all("div", recursive=False):
@@ -116,10 +117,10 @@ class DAIReserves (CoinReservesInterface):
                     reserves_breakdown[asset_category] = (asset_amount, asset_value)
 
             # Scrape ERC-20 LP
-            websurfer.find_element(By.XPATH, "//p[contains(text(), 'ERC-20 LP')]").click()
-            websurfer.pause(10)
+            websurfer.click(XPathIdentifier("//p[contains(text(), 'ERC-20 LP')]"))
+            websurfer.wait(10)
 
-            soup = BeautifulSoup(websurfer.page_source, "html.parser")
+            soup = BeautifulSoup(websurfer.page_source(), "html.parser")
             breakdown_table = soup.find("p", string="ERC-20 LP").parent.parent.parent \
                     .find_all("div", recursive=False)[1]
 
@@ -139,10 +140,10 @@ class DAIReserves (CoinReservesInterface):
                     reserves_breakdown[asset_category] = (asset_amount, asset_value)
 
             # Scrape RWA
-            websurfer.find_element(By.XPATH, "//p[contains(text(), 'Real World Assets')]").click()
-            websurfer.pause(10)
+            websurfer.click(XPathIdentifier("//p[contains(text(), 'Real World Assets')]"))
+            websurfer.wait(10)
 
-            soup = BeautifulSoup(websurfer.page_source, "html.parser")
+            soup = BeautifulSoup(websurfer.page_source(), "html.parser")
             breakdown_table = soup.find("p", string="Real World Assets").parent.parent.parent \
                     .find_all("div", recursive=False)[2]
 
@@ -162,10 +163,10 @@ class DAIReserves (CoinReservesInterface):
                     reserves_breakdown[asset_category] = (asset_amount, asset_value)
 
             # Scrape PSM
-            websurfer.find_element(By.XPATH, "//p[contains(text(), 'Peg Stability Modules')]").click()
-            websurfer.pause(10)
+            websurfer.click(XPathIdentifier("//p[contains(text(), 'Peg Stability Modules')]"))
+            websurfer.wait(10)
 
-            soup = BeautifulSoup(websurfer.page_source, "html.parser")
+            soup = BeautifulSoup(websurfer.page_source(), "html.parser")
             breakdown_table = soup.find("p", string="Peg Stability Modules").parent.parent.parent \
                     .find_all("div", recursive=False)[3]
 
