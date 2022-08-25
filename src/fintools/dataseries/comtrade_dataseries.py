@@ -3,8 +3,10 @@ import datetime
 import requests
 import pandas as pd
 
-from pyutils.pytask_scheduler import PyTask
-from pyutils.pytask_scheduler.request_provider import RequestProvider
+from pyutils.scheduler.task import Task
+from pyutils.scheduler.task import never_predicate, bool_value_predicate
+from pyutils.scheduler.resource.resource_unit import ResourceUnit
+from pyutils.scheduler.resource.usage_limiter import UsageLimiter
 from pyutils.database.github_database.github_artifact import GitHubPickleFile
 from pyutils.database.github_database.github_dataframe import GitHubGraphDataFrame
 from pyutils.database.dataframe_transformer import DataFrameTransformer, GroupByTransformer
@@ -68,14 +70,14 @@ class ComtradeGoods (DataSeriesInterface, GitHubGraphDataFrame):
         return observation_pdf
 
     def update_pytask(self, trade_direction_id: int, reporter_comtrade_id: int,
-        counterparty_comtrade_id: int, reporting_entity: str, counterparty_entity: str) -> tuple:
+        counterparty_comtrade_id: int, reporting_entity: str, counterparty_entity: str) -> bool:
 
         permutation_key = (trade_direction_id, reporter_comtrade_id, counterparty_comtrade_id)
 
         if not permutation_key in self.update_tracker:
             year = datetime.date.today().year - 10
         elif self.update_tracker.get(permutation_key) == datetime.date.today().year:
-            return (False, False) # Updated to most available data
+            return False
         else:
             year = self.update_tracker.get(permutation_key) + 1
         
@@ -83,16 +85,16 @@ class ComtradeGoods (DataSeriesInterface, GitHubGraphDataFrame):
                 counterparty_comtrade_id, reporting_entity, counterparty_entity)
         
         if not observation_pdf.shape[0]:
-            return (True, True) # Empty dataframe
+            return True
         
         self.update_tracker[permutation_key] = year
 
         if self.version_timestamp is None: # Assumed no prior saved data
             self.save_data(observation_pdf, partition_columns=["tradeDirection", "reportingEntity", "year"])
-            return (True, True)
+            return True
 
         self.update_data(observation_pdf)
-        return (True, True)
+        return True
 
     def resync_update_tracker(self) -> None:
         self.update_tracker_node.connection_dpath = self.connection_dpath
@@ -108,7 +110,12 @@ class ComtradeGoods (DataSeriesInterface, GitHubGraphDataFrame):
         self.resync_update_tracker()
         self.update_tracker_node.save_data(self.update_tracker, **kwargs)
 
-    def get_update_pytasks(self, repeat_tasks: bool = True, **default_kwargs) -> set:
+    def get_update_resources(self) -> set:
+        return {
+            UsageLimiter("comtrade_api_usage_limit", 60 * 60, ResourceUnit("unauthenticated", 99))
+        }
+
+    def get_update_tasks(self, reschedule_on_done: bool = False, **kwargs) -> set:
         self.resync_update_tracker()
         self.update_tracker = self.update_tracker_node.read_data()
 
@@ -118,29 +125,32 @@ class ComtradeGoods (DataSeriesInterface, GitHubGraphDataFrame):
 
         reporting_entities = entity_tracker["comtradeGoods"][entity_tracker["comtradeGoods"] == 1].index
         comtrade_entity_id_mapper = entity_metadata["comtradeID"].dropna().to_dict()
-        request_provider = RequestProvider([(99, 60 * 60)]) # Maximum of 100 requests per hour.
-        request_provider.create_gate() # Create only one API gate
-        update_pytasks = []
+        reschedule_pred = bool_value_predicate if reschedule_on_done else never_predicate
+        update_tasks = []
 
         for trade_direction_id in COMTRADE_TRADE_DIRECTION_ID_MAPPER:
             for reporting_entity in reporting_entities:
                 for counterparty_entity in comtrade_entity_id_mapper:
                     reporter_comtrade_id = comtrade_entity_id_mapper.get(reporting_entity)
                     counterparty_comtrade_id = comtrade_entity_id_mapper.get(counterparty_entity)
-                    update_pytasks.append(
-                        PyTask( # Generate pytask accepting access_token parameter
+                    update_tasks.append(
+                        Task(
                             self.update_pytask,
+                            key=f"update_comtrade_{reporting_entity}_{counterparty_entity}_{trade_direction_id}",
                             trade_direction_id=int(trade_direction_id),
                             reporter_comtrade_id=int(reporter_comtrade_id),
                             counterparty_comtrade_id=int(counterparty_comtrade_id),
-                            reporting_entity=reporting_entity, counterparty_entity=counterparty_entity,
-                            max_retries=5, # Buffer for exceptions
-                            request_provider_usage={request_provider: 1},
-                            **default_kwargs
+                            reporting_entity=reporting_entity,
+                            counterparty_entity=counterparty_entity,
+                            raise_on_except=False,
+                            resource_usage={"comtrade_api_usage_limit": 1},
+                            reschedule_freq=0,
+                            reschedule_pred=reschedule_pred
+                            **kwargs
                         )
                     )
 
-        return update_pytasks
+        return update_tasks
 
 """
 class ComtradeAggregator (GroupByTransformer):
