@@ -1,5 +1,3 @@
-from pyutils.scheduler.task import never_predicate
-
 class DataSeriesInterface:
     def __init__(self, data_source: str, frequency: str) -> None:
         self.data_source = data_source

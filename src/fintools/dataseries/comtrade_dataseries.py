@@ -4,7 +4,7 @@ import requests
 import pandas as pd
 
 from pyutils.scheduler.task import Task
-from pyutils.scheduler.task import never_predicate, bool_value_predicate
+from pyutils.scheduler.task.repeat_predicate import RepeatPredicate, CounterPredicate
 from pyutils.scheduler.resource.resource_unit import ResourceUnit
 from pyutils.scheduler.resource.usage_limiter import UsageLimiter
 from pyutils.database.github_database.github_artifact import GitHubPickleFile
@@ -125,7 +125,7 @@ class ComtradeGoods (DataSeriesInterface, GitHubGraphDataFrame):
 
         reporting_entities = entity_tracker["comtradeGoods"][entity_tracker["comtradeGoods"] == 1].index
         comtrade_entity_id_mapper = entity_metadata["comtradeID"].dropna().to_dict()
-        reschedule_pred = bool_value_predicate if reschedule_on_done else never_predicate
+        reschedule_pred = RepeatPredicate() if reschedule_on_done else CounterPredicate(1)
         update_tasks = []
 
         for trade_direction_id in COMTRADE_TRADE_DIRECTION_ID_MAPPER:
