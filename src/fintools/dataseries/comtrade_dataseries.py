@@ -112,7 +112,7 @@ class ComtradeGoods (DataSeriesInterface, GitHubGraphDataFrame):
 
     def get_update_resources(self) -> set:
         return {
-            UsageLimiter("comtrade_api_usage_limit", 60 * 60, ResourceUnit("unauthenticated", 99))
+            UsageLimiter(60 * 60, ResourceUnit(99), key="comtrade_api_usage_limit")
         }
 
     def get_update_tasks(self, reschedule_on_done: bool = False, **kwargs) -> set:

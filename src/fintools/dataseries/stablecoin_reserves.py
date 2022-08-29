@@ -211,7 +211,7 @@ class DAIReserves (CoinReservesInterface):
         return True
 
     def get_update_resources(self) -> set:
-        return {Resource("chrome_exe", ResourceUnit("NaN", 1))}
+        return {Resource(ResourceUnit(1), key="chrome_exe")}
 
     def get_update_tasks(self, reschedule_on_done: bool = False, **kwargs) -> set:
         reschedule_pred = RepeatPredicate() if reschedule_on_done else CounterPredicate(1)
