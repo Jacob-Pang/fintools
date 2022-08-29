@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from fintools.dataseries import DataSeriesInterface
 from fintools.datareader.market_variables.cryptocurrency import coingecko_ticker_metadata, coingecko_get_price
 from pyutils.scheduler.task import Task
-from pyutils.scheduler.task import never_predicate, always_predicate
+from pyutils.scheduler.task.repeat_predicate import RepeatPredicate, CounterPredicate
 from pyutils.scheduler.resource import Resource
 from pyutils.scheduler.resource.resource_unit import ResourceUnit
 from pyutils.database.github_database.github_dataframe import GitHubGraphDataFrame
@@ -29,7 +29,7 @@ class USDTReserves (CoinReservesInterface):
         super().__init__("https://tether.to/en/transparency/#reports", data_node_id, connection_dpath,
                 host_database, "Tether (USDT) reserves composition.", **field_kwargs)
 
-    def update_pytask(self, websurfer_initializer: callable = RPAWebSurfer.initializer(headless_mode=True)) -> None:
+    def update_pytask(self, websurfer_initializer: callable = RPAWebSurfer.initializer(headless_mode=True)) -> bool:
         # Webscrapping caa 25 Jun 2022
         with websurfer_initializer() as websurfer:
             websurfer.get("https://tether.to/en/transparency/#reports")
@@ -71,15 +71,17 @@ class USDTReserves (CoinReservesInterface):
         observation_pdf["date"] = pd.to_datetime(observation_pdf["date"], format=r"%Y-%m-%d")
 
         if self.version_timestamp is None: # Assumed no prior saved data
-            return self.save_data(observation_pdf)
-
-        self.update_data(observation_pdf)
+            self.save_data(observation_pdf)
+        else:
+            self.update_data(observation_pdf)
+        
+        return True
 
     def get_update_resources(self) -> set:
         return {Resource("chrome_exe", ResourceUnit("NaN", 1))}
 
     def get_update_tasks(self, reschedule_on_done: bool = False, **kwargs) -> set:
-        reschedule_pred = always_predicate if reschedule_on_done else never_predicate
+        reschedule_pred = RepeatPredicate() if reschedule_on_done else CounterPredicate(1)
 
         return {
             Task(self.update_pytask, key="update_usdt_reserves", resource_usage={"chrome_exe": 1},
@@ -92,7 +94,7 @@ class DAIReserves (CoinReservesInterface):
         super().__init__("https://daistats.com/#/collateral", data_node_id, connection_dpath,
                 host_database, "MakerDAO (DAI) reserves composition.", **field_kwargs)
 
-    def update_pytask(self, websurfer_initializer: callable = RPAWebSurfer.initializer(headless_mode=True)) -> None:
+    def update_pytask(self, websurfer_initializer: callable = RPAWebSurfer.initializer(headless_mode=True)) -> bool:
         # Webscrapping caa 20 Jun 2022
         with websurfer_initializer() as websurfer:
             websurfer.get("https://daistats.com/#/collateral")
@@ -202,15 +204,17 @@ class DAIReserves (CoinReservesInterface):
         observation_pdf["date"] = pd.to_datetime(observation_pdf["date"], format=r"%Y-%m-%d")
 
         if self.version_timestamp is None: # Assumed no prior saved data
-            return self.save_data(observation_pdf)
+            self.save_data(observation_pdf)
+        else:
+            self.update_data(observation_pdf)
 
-        self.update_data(observation_pdf)
+        return True
 
     def get_update_resources(self) -> set:
         return {Resource("chrome_exe", ResourceUnit("NaN", 1))}
 
     def get_update_tasks(self, reschedule_on_done: bool = False, **kwargs) -> set:
-        reschedule_pred = always_predicate if reschedule_on_done else never_predicate
+        reschedule_pred = RepeatPredicate() if reschedule_on_done else CounterPredicate(1)
 
         return {
             Task(self.update_pytask, key="update_dai_reserves", resource_usage={"chrome_exe": 1},
