@@ -6,7 +6,7 @@ class DataSeriesInterface:
     def get_update_resources(self) -> set:
         raise NotImplementedError()
 
-    def get_update_tasks(self, reschedule_on_done: bool = False, **kwargs) -> set:
+    def get_update_tasks(self, runs: int = 1, **kwargs) -> set:
         raise NotImplementedError()
 
 if __name__ == "__main__":

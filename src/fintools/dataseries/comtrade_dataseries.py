@@ -3,10 +3,8 @@ import datetime
 import requests
 import pandas as pd
 
-from pyutils.scheduler.task import Task
-from pyutils.scheduler.task.repeat_predicate import RepeatPredicate, CounterPredicate
-from pyutils.scheduler.resource.resource_unit import ResourceUnit
-from pyutils.scheduler.resource.usage_limiter import UsageLimiter
+from pyutils.task_scheduler.task import Task
+from pyutils.task_scheduler.resource.rate_limit import RateLimit
 from pyutils.database.github_database.github_artifact import GitHubPickleFile
 from pyutils.database.github_database.github_dataframe import GitHubGraphDataFrame
 from pyutils.database.dataframe_transformer import DataFrameTransformer, GroupByTransformer
@@ -111,11 +109,9 @@ class ComtradeGoods (DataSeriesInterface, GitHubGraphDataFrame):
         self.update_tracker_node.save_data(self.update_tracker, **kwargs)
 
     def get_update_resources(self) -> set:
-        return {
-            UsageLimiter(60 * 60, ResourceUnit(99), key="comtrade_api_usage_limit")
-        }
+        return {RateLimit(3600, "comtrade_api_rate_limit", 99)}
 
-    def get_update_tasks(self, reschedule_on_done: bool = False, **kwargs) -> set:
+    def get_update_tasks(self, runs: int = 1, **kwargs) -> set:
         self.resync_update_tracker()
         self.update_tracker = self.update_tracker_node.read_data()
 
@@ -125,7 +121,6 @@ class ComtradeGoods (DataSeriesInterface, GitHubGraphDataFrame):
 
         reporting_entities = entity_tracker["comtradeGoods"][entity_tracker["comtradeGoods"] == 1].index
         comtrade_entity_id_mapper = entity_metadata["comtradeID"].dropna().to_dict()
-        reschedule_pred = RepeatPredicate() if reschedule_on_done else CounterPredicate(1)
         update_tasks = []
 
         for trade_direction_id in COMTRADE_TRADE_DIRECTION_ID_MAPPER:
@@ -136,16 +131,16 @@ class ComtradeGoods (DataSeriesInterface, GitHubGraphDataFrame):
                     update_tasks.append(
                         Task(
                             self.update_pytask,
-                            key=f"update_comtrade_{reporting_entity}_{counterparty_entity}_{trade_direction_id}",
+                            name=f"update_comtrade_{reporting_entity}_{counterparty_entity}_{trade_direction_id}",
+                            resource_usage={"comtrade_api_usage_limit": 1},
+                            repeat_freq=0,
+                            runs=runs,
+                            raise_on_except=False,
                             trade_direction_id=int(trade_direction_id),
                             reporter_comtrade_id=int(reporter_comtrade_id),
                             counterparty_comtrade_id=int(counterparty_comtrade_id),
                             reporting_entity=reporting_entity,
                             counterparty_entity=counterparty_entity,
-                            raise_on_except=False,
-                            resource_usage={"comtrade_api_usage_limit": 1},
-                            reschedule_freq=0,
-                            reschedule_pred=reschedule_pred
                             **kwargs
                         )
                     )

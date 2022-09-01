@@ -3,7 +3,7 @@ import multiprocessing
 import os
 
 from fintools.datareader import get_database
-from pyutils.scheduler import MasterProcess
+from pyutils.task_scheduler import TaskScheduler
 
 def main():
     auth_cred_file_path = os.path.join(os.path.dirname(__file__), "authentication_credentials.json")
@@ -16,19 +16,18 @@ def main():
     crypto_database.set_access_token(access_token)
     coin_reserves_id_list = ["usdt_reserves", "dai_reserves"]
     
-    with multiprocessing.Manager() as sync_manager:
-        master_process = MasterProcess(sync_manager, verbose=True)
+    task_scheduler = TaskScheduler()
 
-        for coin_reserves_id in coin_reserves_id_list:
-            coin_reserves_node = crypto_database.get_child_node(coin_reserves_id)
+    for coin_reserves_id in coin_reserves_id_list:
+        coin_reserves_node = crypto_database.get_child_node(coin_reserves_id)
 
-            for task in coin_reserves_node.get_update_tasks(reschedule_on_done=False):
-                master_process.register_task(task)
+        for task in coin_reserves_node.get_update_tasks(reschedule_on_done=False):
+            task_scheduler.submit_task(task)
 
-            for resource in coin_reserves_node.get_update_resources():
-                master_process.register_resource(resource, sync_manager)
+        task_scheduler.add_resources(*coin_reserves_node.get_update_resources())
 
-        master_process()
+    task_scheduler.start(description="Updating coin_reserves")
+    task_scheduler.join()
 
 if __name__ == "__main__":
     main()

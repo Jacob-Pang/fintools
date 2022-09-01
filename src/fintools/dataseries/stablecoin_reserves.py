@@ -4,10 +4,8 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from fintools.dataseries import DataSeriesInterface
 from fintools.datareader.market_variables.cryptocurrency import coingecko_ticker_metadata, coingecko_get_price
-from pyutils.scheduler.task import Task
-from pyutils.scheduler.task.repeat_predicate import RepeatPredicate, CounterPredicate
-from pyutils.scheduler.resource import Resource
-from pyutils.scheduler.resource.resource_unit import ResourceUnit
+from pyutils.task_scheduler.task import Task
+from pyutils.task_scheduler.resource import Resource
 from pyutils.database.github_database.github_dataframe import GitHubGraphDataFrame
 from pyutils.websurfer import XPathIdentifier
 from pyutils.websurfer.rpa import RPAWebSurfer
@@ -78,14 +76,12 @@ class USDTReserves (CoinReservesInterface):
         return True
 
     def get_update_resources(self) -> set:
-        return {Resource(ResourceUnit(1), key="chrome_exe")}
+        return {Resource("chrome_exe")}
 
-    def get_update_tasks(self, reschedule_on_done: bool = False, **kwargs) -> set:
-        reschedule_pred = RepeatPredicate() if reschedule_on_done else CounterPredicate(1)
-
+    def get_update_tasks(self, runs: int = 1, **kwargs) -> set:
         return {
-            Task(self.update_pytask, key="update_usdt_reserves", resource_usage={"chrome_exe": 1},
-                    reschedule_pred=reschedule_pred, reschedule_freq=(60 * 60), **kwargs)
+            Task(self.update_pytask, name="update_usdt_reserves", resource_usage={"chrome_exe": 1},
+                    runs=runs, repeat_freq=21600, **kwargs)
         }
 
 class DAIReserves (CoinReservesInterface):
@@ -211,14 +207,12 @@ class DAIReserves (CoinReservesInterface):
         return True
 
     def get_update_resources(self) -> set:
-        return {Resource(ResourceUnit(1), key="chrome_exe")}
+        return {Resource("chrome_exe")}
 
-    def get_update_tasks(self, reschedule_on_done: bool = False, **kwargs) -> set:
-        reschedule_pred = RepeatPredicate() if reschedule_on_done else CounterPredicate(1)
-
+    def get_update_tasks(self, runs: int = 1, **kwargs) -> set:
         return {
-            Task(self.update_pytask, key="update_dai_reserves", resource_usage={"chrome_exe": 1},
-                    reschedule_pred=reschedule_pred, reschedule_freq=(60 * 60), **kwargs)
+            Task(self.update_pytask, name="update_dai_reserves", resource_usage={"chrome_exe": 1},
+                    runs=runs, repeat_freq=21600, **kwargs)
         }
 
 if __name__ == "__main__":
