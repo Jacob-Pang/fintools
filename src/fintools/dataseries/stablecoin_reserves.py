@@ -28,6 +28,7 @@ class USDTReserves (CoinReservesInterface):
                 host_database, "Tether (USDT) reserves composition.", **field_kwargs)
 
     def update_pytask(self, websurfer_initializer: callable = RPAWebSurfer.initializer(headless_mode=True)) -> bool:
+        print("entered")
         # Webscrapping caa 25 Jun 2022
         with websurfer_initializer() as websurfer:
             websurfer.get("https://tether.to/en/transparency/#reports")
@@ -73,6 +74,7 @@ class USDTReserves (CoinReservesInterface):
         else:
             self.update_data(observation_pdf)
         
+        print("exited")
         return True
 
     def get_update_resources(self) -> set:
@@ -91,6 +93,7 @@ class DAIReserves (CoinReservesInterface):
                 host_database, "MakerDAO (DAI) reserves composition.", **field_kwargs)
 
     def update_pytask(self, websurfer_initializer: callable = RPAWebSurfer.initializer(headless_mode=True)) -> bool:
+        print("entered")
         # Webscrapping caa 20 Jun 2022
         with websurfer_initializer() as websurfer:
             websurfer.get("https://daistats.com/#/collateral")
@@ -204,6 +207,7 @@ class DAIReserves (CoinReservesInterface):
         else:
             self.update_data(observation_pdf)
 
+        print("exit")
         return True
 
     def get_update_resources(self) -> set:
